@@ -1,0 +1,39 @@
+{% extends "back/baseback.html.twig" %}
+
+{% block title %}Service Vétérinaire{% endblock %}
+
+{% block body %}
+    <h1>Service Vétérinaire</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ service_v.id }}</td>
+            </tr>
+            <tr>
+                <th>Prix</th>
+                <td>{{ service_v.prix }}</td>
+            </tr>
+            <tr>
+                <th>Nom</th>
+                <td>{{ service_v.nom }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ service_v.description }}</td>
+            </tr>
+            <tr>
+                <th>Date</th>
+                <td>{{ service_v.date ? service_v.date|date('Y-m-d') : '' }}</td>
+            </tr>
+        
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_service_v_index') }}"class="btn btn-info active btn-sm" role="button">page précedente</a>
+
+    <a href="{{ path('app_service_v_edit', {'id': service_v.id}) }}"class="btn btn-info active btn-sm" role="button">Modifier</a>
+
+    {{ include('service_v/_delete_form.html.twig') }}
+{% endblock %}

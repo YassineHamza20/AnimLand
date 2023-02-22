@@ -1,0 +1,14 @@
+<div class="container">
+   {{ form_start(form,{'attr':{'novalidate' : 'novalidate'}}) }}
+ 
+   <div class="form-groupe">
+      {{ form_label(form.type,"type") }}
+      {{ form_widget(form.type,{'attr':{'class':'form-control'}}) }}
+      {% if form_errors(form.type) is not empty %}
+      <div class="alert alert-danger" > 
+      {{ form_errors(form.type) }}
+
+      </div>
+ {% endif %}
+    <button class="btn">{{ button_label|default('Save') }}</button>
+{{ form_end(form) }}

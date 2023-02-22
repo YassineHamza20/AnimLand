@@ -1,0 +1,25 @@
+{% extends "back/baseback.html.twig" %}
+{% block title %}Categorie{% endblock %}
+
+{% block body %}
+    <h1>CategorieV</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ categorie_v.id }}</td>
+            </tr>
+            <tr>
+                <th>Type</th>
+                <td>{{ categorie_v.type }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_categorie_v_index') }}"class="btn btn-info active btn-sm" role="button">page précedente</a>
+
+    <a href="{{ path('app_categorie_v_edit', {'id': categorie_v.id}) }}"class="btn btn-info active btn-sm" role="button">Modifier</a>
+
+    {{ include('categorie_v/_delete_form.html.twig') }}
+{% endblock %}

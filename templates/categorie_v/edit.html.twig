@@ -1,0 +1,12 @@
+{% extends "back/baseback.html.twig" %}
+{% block title %}Modifier Categorie{% endblock %}
+
+{% block body %}
+    <h1>Modifier CategorieV</h1>
+
+    {{ include('categorie_v/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('app_categorie_v_index') }}"class="btn btn-info active btn-sm" role="button">page précedente</a>
+
+    {{ include('categorie_v/_delete_form.html.twig') }}
+{% endblock %}

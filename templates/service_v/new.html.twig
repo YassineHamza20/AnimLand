@@ -1,0 +1,12 @@
+{% extends "back/baseback.html.twig" %}
+{% block title %}Nouveau Service Vétérinaire{% endblock %}
+
+{% block body %}
+    <h1>Ajouter un Service Vétérinaire</h1>
+
+    {{ include('service_v/_form.html.twig') }}
+
+    <a href="{{ path('app_service_v_index') }}"class="btn btn-info active btn-sm" role="button">page précedente</a>
+
+{% endblock %}
+

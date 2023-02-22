@@ -1,0 +1,34 @@
+{% extends "back/baseback.html.twig" %}
+{% block title %}Categorie{% endblock %}
+
+{% block body %}
+    <h1>Listes des Categories</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Type</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for categorie_v in categorie_vs %}
+            <tr>
+                <td>{{ categorie_v.id }}</td>
+                <td>{{ categorie_v.type }}</td>
+                <td>
+                    <a href="{{ path('app_categorie_v_show', {'id': categorie_v.id}) }}" class="btn btn-info active btn-sm" role="button" >Afficher</a>
+                    <a href="{{ path('app_categorie_v_edit', {'id': categorie_v.id}) }}" class="btn btn-info active btn-sm" role="button" >Modifier</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_categorie_v_new') }}" class="btn btn-info active btn-sm" role="button">Create new</a>
+{% endblock %}

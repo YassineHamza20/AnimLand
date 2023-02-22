@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\ServiceVRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: ServiceVRepository::class)]
 class ServiceV
@@ -15,16 +16,24 @@ class ServiceV
     private ?int $id = null;
 
     #[ORM\Column]
+    #[Assert\NotBlank (message:"le champs est vide")]
     private ?float $prix = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank (message:"le champs est vide")]
     private ?string $nom = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank (message:"le champs est vide")]
     private ?string $description = null;
 
     #[ORM\Column(type: Types::DATE_MUTABLE)]
     private ?\DateTimeInterface $date = null;
+
+    #[ORM\ManyToOne(inversedBy: 'serviceVs')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?CategorieV $category = null;
+
 
     public function getId(): ?int
     {
@@ -78,4 +87,17 @@ class ServiceV
 
         return $this;
     }
+
+    public function getCategory(): ?CategorieV
+    {
+        return $this->category;
+    }
+
+    public function setCategory(?CategorieV $category): self
+    {
+        $this->category = $category;
+
+        return $this;
+    }
+
 }

@@ -1,0 +1,44 @@
+{% extends "back/baseback.html.twig" %}
+
+{% block title %}Service Vétérinaire{% endblock %}
+
+
+{% block body %}
+    <h1>Service Vétérinaire</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Prix</th>
+                <th>Nom</th>
+                <th>Description</th>
+                <th>Date</th>
+                <th>category</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for service_v in service_vs %}
+            <tr>
+                <td>{{ service_v.id }}</td>
+                <td>{{ service_v.prix }}</td>
+                <td>{{ service_v.nom }}</td>
+                <td>{{ service_v.description }}</td>
+                <td>{{ service_v.date ? service_v.date|date('Y-m-d') : '' }}</td>
+                <td>{{ service_v.category.type}}</td>
+                <td>
+                    <a href="{{ path('app_service_v_show', {'id': service_v.id}) }}" class="btn btn-info active btn-sm" role="button" >Afficher</a>
+                    <a href="{{ path('app_service_v_edit', {'id': service_v.id}) }}" class="btn btn-info active btn-sm" role="button" >Modifier</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_service_v_new') }}"class="btn btn-info active btn-sm" role="button">Ajouter Nouveau service</a>
+{% endblock %}
