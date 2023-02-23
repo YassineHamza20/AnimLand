@@ -5,6 +5,10 @@ namespace App\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use App\Entity\Produit;
+use App\Form\ProduitType;
+use App\Repository\ProduitRepository;
+use App\Entity\CategorieP;
 
 class FrontController extends AbstractController
 {
@@ -31,12 +35,19 @@ class FrontController extends AbstractController
         ]);
     }
     #[Route('/produits', name: 'app_produits')]
-    public function produits(): Response
+    public function produits(ProduitRepository $produitRepository): Response
     {
+        $res = $produitRepository->findAll();  //recherche1
+        
+
         return $this->render('produits.html.twig', [
-            'controller_name' => 'FrontController',
+            'controller_name' => 'ProduitController',
+            'productliste' => $res, 
         ]);
     }
+
+
+
     #[Route('/rec', name: 'app_rec')]
     public function reclamations(): Response
     {

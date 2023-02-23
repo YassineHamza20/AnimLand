@@ -1,0 +1,36 @@
+<div class="Container">
+{{ form_start(form,{'attr':{'novalidate':'novalidate'}} ) }}
+<div class="form-group">
+    {{ form_label(form.nom,"Nom Produit") }}
+     {{ form_widget(form.nom,{'attr':{'class':'form-control'}} )  }}
+{% if form_errors(form.nom) is not empty %}
+     <div class ='alert alert-danger'>
+     {{form_errors(form.nom)}}
+     </div>
+     </div>
+{% endif %}
+<div class="form-group">
+      {{ form_label(form.prix,"Prix Produit") }}
+     {{ form_widget(form.prix,{'attr':{'class':'form-control'}} )  }}
+{% if form_errors(form.prix) is not empty %}
+     <div class ='alert alert-danger'>
+     {{form_errors(form.prix)}}
+     </div>
+     </div>
+     {% endif %}
+
+<div class="form-group">
+    {{ form_label(form.CategorieP,"type Categorie") }}
+     {{ form_widget(form.CategorieP,{'attr':{'class':'form-control'}} )  }}
+{% if form_errors(form.CategorieP) is not empty %}
+     <div class ='alert alert-danger'>
+     {{form_errors(form.CategorieP)}}
+     </div>
+     </div>
+{% endif %}
+
+   
+{{ form_end(form) }}
+ <button class="btn btn btn-info active btn-sm" style="margin-top:5px; width:90px">{{ button_label|default('Save') }}</button>
+</div>
+</div>

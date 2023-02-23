@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\ProduitRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: ProduitRepository::class)]
 class Produit
@@ -14,6 +15,7 @@ class Produit
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank(message:"le champ est vide")]
     private ?string $nom = null;
 
     #[ORM\Column]
@@ -21,6 +23,10 @@ class Produit
 
     #[ORM\Column(length: 255)]
     private ?string $photo = null;
+
+    #[ORM\ManyToOne(inversedBy: 'produits')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?CategorieP $CategorieP = null;
 
     public function getId(): ?int
     {
@@ -61,5 +67,22 @@ class Produit
         $this->photo = $photo;
 
         return $this;
+    }
+
+    public function getCategorieP(): ?CategorieP
+    {
+        return $this->CategorieP;
+    }
+
+    public function setCategorieP(?CategorieP $CategorieP): self
+    {
+        $this->CategorieP = $CategorieP;
+
+        return $this;
+    }
+
+    
+    public function __toString(){
+        return(string) $this->getCategorieP();
     }
 }

@@ -119,76 +119,29 @@
 		<div class="p-1 border-bottom"></div>
 
     		<div class="row">
+			{% for produit in productliste %} 
     			<div class="col-md-4 ftco-animate">
 	          <div class="block-7">
-	          	<div class="img" style="background-image: url(images/Produit-premix.png);"></div>
+			  {% set img = produit.photo %}
+	          	<img class="img" src="{{asset(img) }}">
 	            <div class="text-center p-4">
-	            	<span class="excerpt d-block">age de transport Gipsy Small Porte Plastique</span>
-	            	<span class="price"> <span class="number">39.900</span> <sub>dt</sub></span>
-	        
+	            	<span class="excerpt d-block">{{produit.nom}}</span>
+					
+	            	<span class="price"> <span class="number">{{produit.prix | number_format (0,',', ' ') }}</span> <sub>dt</sub></span>
+	      
 	            </div>
 	          </div>
+
+
+
+			  
 	        </div>
-	        <div class="col-md-4 ftco-animate">
-	          <div class="block-7">
-	          	<div class="img" style="background-image: url(images/pet-food1.jpg);"></div>
-	            <div class="text-center p-4">
-	            	<span class="excerpt d-block">age de transport Gipsy Small Porte Plastique</span>
-	            	<span class="price"> <span class="number">39.900</span> <sub>dt</sub></span>
+			  {% endfor %}
 	        
-	            </div>
-	          </div>
-	        </div>
-	        <div class="col-md-4 ftco-animate">
-	          <div class="block-7">
-	          	<div class="img" style="background-image: url(images/cat-food3.jpg);"></div>
-	            <div class="text-center p-4">
-	            	<span class="excerpt d-block">age de transport Gipsy Small Porte Plastique</span>
-	            	<span class="price"> <span class="number">39.900</span> <sub>dt</sub></span>
-	        
-	            </div>
-	          </div>
 	        </div>
 	      </div>
     	</div>
-		<div class="container">
-    		<div class="row justify-content-center pb-5 mb-3">
-          <div class="col-md-7 heading-section text-center ftco-animate">
-          </div>
-        </div>
-    		<div class="row">
-    			<div class="col-md-4 ftco-animate">
-	          <div class="block-7">
-	          	<div class="img" style="background-image: url(images/hygene2.png);"></div>
-	            <div class="text-center p-4">
-	            	<span class="excerpt d-block">age de transport Gipsy Small Porte Plastique</span>
-	            	<span class="price"> <span class="number">39.900</span> <sub>dt</sub></span>
-	        
-	            </div>
-	          </div>
-	        </div>
-	        <div class="col-md-4 ftco-animate">
-	          <div class="block-7">
-	          	<div class="img" style="background-image: url(images/hygene1.jpg);"></div>
-	            <div class="text-center p-4">
-	            	<span class="excerpt d-block">age de transport Gipsy Small Porte Plastique</span>
-	            	<span class="price"> <span class="number">39.900</span> <sub>dt</sub></span>
-	        
-	            </div>
-	          </div>
-	        </div>
-	        <div class="col-md-4 ftco-animate">
-	          <div class="block-7">
-	          	<div class="img" style="background-image: url(images/hygene3.png);"></div>
-	            <div class="text-center p-4">
-	            	<span class="excerpt d-block">age de transport Gipsy Small Porte Plastique</span>
-	            	<span class="price"> <span class="number">39.900</span> <sub>dt</sub></span>
-	        
-	            </div>
-	          </div>
-	        </div>
-	      </div>
-    	</div>
+		
     </section>
 
     <section class=" ftco-section ftco-no-pt ftco-no-pb ">
