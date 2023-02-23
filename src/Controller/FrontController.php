@@ -44,13 +44,6 @@ class FrontController extends AbstractController
             'controller_name' => 'FrontController',
         ]);
     }
-    #[Route('/adoption', name: 'app_adoption')]
-    public function adoption(): Response
-    {
-        return $this->render('adoption.html.twig', [
-            'controller_name' => 'FrontController',
-        ]);
-    }
     #[Route('/about', name: 'app_about')]
     public function about(): Response
     {

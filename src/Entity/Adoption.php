@@ -31,6 +31,10 @@ class Adoption
     #[ORM\Column(length: 255)]
     private ?string $race = null;
 
+    #[ORM\ManyToOne(inversedBy: 'Animaux')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?CategorieADOP $Categorie = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -104,6 +108,18 @@ class Adoption
     public function setRace(string $race): self
     {
         $this->race = $race;
+
+        return $this;
+    }
+
+    public function getCategorie(): ?CategorieADOP
+    {
+        return $this->Categorie;
+    }
+
+    public function setCategorie(?CategorieADOP $Categorie): self
+    {
+        $this->Categorie = $Categorie;
 
         return $this;
     }
