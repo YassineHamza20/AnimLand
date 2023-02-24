@@ -5,6 +5,7 @@ namespace App\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use App\Repository\ServiceVRepository;
 
 class FrontController extends AbstractController
 {
@@ -17,10 +18,10 @@ class FrontController extends AbstractController
     }
 
     #[Route('/vet', name: 'app_vet')]
-    public function vet(): Response
+    public function vet(ServiceVRepository $serviceVRepository): Response
     {
-        return $this->render('vet.html.twig', [
-            'controller_name' => 'FrontController',
+             return $this->render('vet.html.twig', [
+            'service_vs' => $serviceVRepository->findAll(),
         ]);
     }
     #[Route('/services', name: 'app_services')]
@@ -28,6 +29,7 @@ class FrontController extends AbstractController
     {
         return $this->render('services.html.twig', [
             'controller_name' => 'FrontController',
+           
         ]);
     }
     #[Route('/produits', name: 'app_produits')]

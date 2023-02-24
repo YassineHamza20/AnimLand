@@ -72,7 +72,7 @@
         <div class="row no-gutters slider-text align-items-end">
           <div class="col-md-9 ftco-animate pb-5">
           	<p class="breadcrumbs mb-2"><span class="mr-2"><a href="index.html">Accueil <i class="ion-ios-arrow-forward"></i></a></span> <span>Services Vétérinaires <i class="ion-ios-arrow-forward"></i></span></p>
-            <h1 class="mb-0 bread">NOS VETERINAIRES</h1>
+            <h1 class="mb-0 bread">NOS Services</h1>
           </div>
         </div>
       </div>
@@ -81,79 +81,23 @@
     <section class="ftco-section bg-light">
 			<div class="container">
 				<div class="row">
-					<div class="col-md-6 col-lg-3 ftco-animate">
-						<div class="staff">
-							<div class="img-wrap d-flex align-items-stretch">
-								<div class="img align-self-stretch" style="background-image: url(images/staff-1.jpg);"></div>
-							</div>
-							<div class="text pt-3 px-3 pb-4 text-center">
-								<h3>XXXXX</h3>
-								<span class="position mb-2">vétérinaire</span>
-								<div class="faded">
-									<p>Docteur en Médecine Vétérinaire CHIRURGIE DENTISTERIE ANALYSES MEDICALES HOSPITALISATION PHARMACIE TOILETTAGE.</p>
-									<ul class="ftco-social text-center">
-		                <li class="ftco-animate"><a href="#" class="d-flex align-items-center justify-content-center"><span class="fa fa-twitter"></span></a></li>
-		                <li class="ftco-animate"><a href="#" class="d-flex align-items-center justify-content-center"><span class="fa fa-facebook"></span></a></li>
-		                <li class="ftco-animate"><a href="#" class="d-flex align-items-center justify-content-center"><span class="fa fa-google"></span></a></li>
-		                <li class="ftco-animate"><a href="#" class="d-flex align-items-center justify-content-center"><span class="fa fa-instagram"></span></a></li>
-		              </ul>
-	              </div>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-6 col-lg-3 ftco-animate">
-						<div class="staff">
-							<div class="img-wrap d-flex align-items-stretch">
-								<div class="img align-self-stretch" style="background-image: url(images/staff-2.jpg);"></div>
-							</div>
-							<div class="text pt-3 px-3 pb-4 text-center">
-								<h3>YYYYYY</h3>
-								<span class="position mb-2"> vétérinaire</span>
-								<div class="faded">
-									<p>docteur en médecine vétérinaire spécialiste Animaux de compagnie.</p>
-									<ul class="ftco-social text-center">
-		                <li class="ftco-animate"><a href="#" class="d-flex align-items-center justify-content-center"><span class="fa fa-twitter"></span></a></li>
-		                <li class="ftco-animate"><a href="#" class="d-flex align-items-center justify-content-center"><span class="fa fa-facebook"></span></a></li>
-		                <li class="ftco-animate"><a href="#" class="d-flex align-items-center justify-content-center"><span class="fa fa-google"></span></a></li>
-		                <li class="ftco-animate"><a href="#" class="d-flex align-items-center justify-content-center"><span class="fa fa-instagram"></span></a></li>
-		              </ul>
-	              </div>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-6 col-lg-3 ftco-animate">
-						<div class="staff">
-							<div class="img-wrap d-flex align-items-stretch">
-								<div class="img align-self-stretch" style="background-image: url(images/staff-3.jpg);"></div>
-							</div>
-							<div class="text pt-3 px-3 pb-4 text-center">
-								<h3>ZZZZZ</h3>
-								<span class="position mb-2">vétérinaire</span>
-								<div class="faded">
-									<p>Docteur en médecine vétérinaire Formation comportement & dermatologie.</p>
-									<ul class="ftco-social text-center">
-		                <li class="ftco-animate"><a href="#" class="d-flex align-items-center justify-content-center"><span class="fa fa-twitter"></span></a></li>
-		                <li class="ftco-animate"><a href="#" class="d-flex align-items-center justify-content-center"><span class="fa fa-facebook"></span></a></li>
-		                <li class="ftco-animate"><a href="#" class="d-flex align-items-center justify-content-center"><span class="fa fa-google"></span></a></li>
-		                <li class="ftco-animate"><a href="#" class="d-flex align-items-center justify-content-center"><span class="fa fa-instagram"></span></a></li>
-		              </ul>
-	              </div>
-							</div>
-						</div>
-					</div>
 					
-
-			
+	    
+			{% for item in service_vs  %}
 					<div class="col-md-6 col-lg-3 ftco-animate">
 						<div class="staff">
 							<div class="img-wrap d-flex align-items-stretch">
 								<div class="img align-self-stretch" style="background-image: url(images/staff-6.jpg);"></div>
 							</div>
 							<div class="text pt-3 px-3 pb-4 text-center">
-								<h3>MMMMMM</h3>
-								<span class="position mb-2">vétérinaire</span>
+								<h3>{{item.prix}}</h3>
+								<h3>{{item.Nom}}</h3>*
+								<h3>{{item.description}}</h3>
+								<h3>{{item.category}}</h3>
+								
+								<span class="position mb-2"></span>
 								<div class="faded">
-									<p>Docteur en médecine vétérinaire Spécialiste en médecine et chirurgie des animaux domestiques et les chevaux de courses Mastere de recherche: Gestion et économie des systèmes aquatiques.</p>
+									<p>description</p>
 									<ul class="ftco-social text-center">
 		                <li class="ftco-animate"><a href="#" class="d-flex align-items-center justify-content-center"><span class="fa fa-twitter"></span></a></li>
 		                <li class="ftco-animate"><a href="#" class="d-flex align-items-center justify-content-center"><span class="fa fa-facebook"></span></a></li>
@@ -164,10 +108,16 @@
 							</div>
 						</div>
 					</div>
-				
+				 {% endfor %}
 			
 			</div>
 		</section>
+		{# {% for item in service_vs  %}
+    <p>{{item.prix}} <p/>
+	<p>{{item.Nom}} <p/>
+	<p>{{item.Description}} <p/>
+	<p>{{item.category}} <p/> #}
+
 
     <footer class="footer">
 			<div class="container">
@@ -238,7 +188,11 @@
         </div>
 			</div>
 		</footer>
+		
+ {% for item in service_vs  %}
+    <p>{{item.prix}} <p/>
 
+    {% endfor %}
     
   
 
