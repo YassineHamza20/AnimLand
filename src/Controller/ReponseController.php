@@ -10,13 +10,21 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-#[Route('/reponse')]
+#[Route('/r')]
 class ReponseController extends AbstractController
 {
-    #[Route('/', name: 'app_reponse_index', methods: ['GET'])]
+    #[Route('/reponse', name: 'app_reponse_index', methods: ['GET'])]
     public function index(ReponseRepository $reponseRepository): Response
     {
         return $this->render('reponse/index.html.twig', [
+            'reponses' => $reponseRepository->findAll(),
+        ]);
+    }
+
+    #[Route('/reponsee', name: 'app_reponse_index_front', methods: ['GET'])]
+    public function index_front(ReponseRepository $reponseRepository): Response
+    {
+        return $this->render('reponse/index_front.html.twig', [
             'reponses' => $reponseRepository->findAll(),
         ]);
     }

@@ -11,10 +11,10 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
  
  
-#[Route('/reclamation')] 
+#[Route('/')] 
 class ReclamationController extends AbstractController
 {
-    #[Route('/', name: 'app_reclamation', methods: ['GET'])]
+    #[Route('/reclamation', name: 'app_reclamation', methods: ['GET'])]
     public function reclamation(ReclamationRepository $reclamationRepository): Response
     {
         return $this->render('front/reclamation/index.html.twig', [
@@ -22,6 +22,57 @@ class ReclamationController extends AbstractController
         ]);
     }
  
+ 
+    #[Route('/app_ad', name: 'app_ad')]
+    public function index(): Response
+    {
+        return $this->render('adoption.html.twig', [
+            'controller_name' => 'ReclamationController',
+        ]);
+    } 
+
+    #[Route('/app_pr', name: 'app_pr')]
+    public function indexpr(): Response
+    {
+        return $this->render('produits.html.twig', [
+            'controller_name' => 'ReclamationController',
+        ]);
+    } 
+    #[Route('/app_ch', name: 'app_ch')]
+    public function indexch(): Response
+    {
+        return $this->render('accouplement.html.twig', [
+            'controller_name' => 'ReclamationController',
+        ]);
+    } 
+
+    #[Route('/app_s', name: 'app_s')]
+    public function indexs(): Response
+    {
+        return $this->render('services.html.twig', [
+            'controller_name' => 'ReclamationController',
+        ]);
+    } 
+    #[Route('/app_v', name: 'app_v')]
+    public function indexv(): Response
+    {
+        return $this->render('vet.html.twig', [
+            'controller_name' => 'ReclamationController',
+        ]);
+    } 
+    #[Route('/app_a', name: 'app_a')]
+    public function indexa(): Response
+    {
+        return $this->render('base.html.twig', [
+            'controller_name' => 'ReclamationController',
+        ]);
+    } 
+
+
+
+
+
+
   
     #[Route('/new', name: 'app_reclamation_new', methods: ['GET', 'POST'])]
     public function new(Request $request, ReclamationRepository $reclamationRepository): Response
@@ -88,6 +139,13 @@ class ReclamationController extends AbstractController
 
 
      
+    
+    
+
+    
+
+     
+
 
 }
 

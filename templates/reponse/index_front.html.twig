@@ -1,5 +1,6 @@
 
 
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -133,43 +134,46 @@
 								</div>
                                 
 							 
+{% block body %}
+     
 
     <table class="table">
         <thead>
             <tr>
-                 
-                 <th>id</th>
+                <th>Id</th>
                 <th>Objet</th>
                 <th>Description</th>
                 <th>Nom</th>
-                  <th>actions</th>
+                <th>reclamation_id</th>
+                
             </tr>
         </thead>
         <tbody>
-        {% for reclamation in reclamations %}
+        {% for reponse in reponses %}
             <tr>
-                
-                <td>{{ reclamation.id }}</td>
-                <td>{{ reclamation.objet }}</td>
-                <td>{{ reclamation.description }}</td>
-                <td>{{ reclamation.nom }}</td>
+                <td>{{ reponse.id }}</td>
+                <td>{{ reponse.objet }}</td>
+                <td>{{ reponse.description }}</td>
+                <td>{{ reponse.nom }}</td>
+                 <td>{{reponse.reclamation }}</td>
                 <td>
-                    <a href="{{ path('app_reclamation_show', {'id': reclamation.id}) }}" class="btn btn-primary" >show</a>
-                    <a href="{{ path('app_reclamation_edit', {'id': reclamation.id}) }}"   class="btn btn-primary">edit</a>
+                    
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="6">no records found !!</td>
+                <td colspan="5">no records found</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <a href="{{ path('app_reclamation_new') }}"  class="btn btn-primary">Create new</a>   <p>&nbsp;&nbsp;&nbsp;</p>
-     <a href="{{ path('app_reponse_index_front') }}"  class="btn btn-primary">les reponses</a>
     
-									 
+{% endblock %}
+
+
+
+		 
 								</div> 
 								<div class="col-md-5 d-flex align-items-stretch">
 									
