@@ -9,6 +9,14 @@ use App\Entity\Produit;
 use App\Form\ProduitType;
 use App\Repository\ProduitRepository;
 use App\Entity\CategorieP;
+use App\Form\ProductSearchType;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\JsonResponse;
+use Knp\Component\Pager\PaginatorInterface;
+use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
+use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
+use Symfony\Component\Serializer\Serializer;
+use Symfony\Component\Serializer\SerializerInterface;
 
 class FrontController extends AbstractController
 {
@@ -35,16 +43,87 @@ class FrontController extends AbstractController
         ]);
     }
     #[Route('/produits', name: 'app_produits')]
-    public function produits(ProduitRepository $produitRepository): Response
+    public function produits(SerializerInterface $serializer, ProduitRepository $produitRepository, Request $request, PaginatorInterface $paginator): Response
     {
         $res = $produitRepository->findAll();  //recherche1
+        $res = $paginator->paginate(
+            $res, /* query NOT result */
+            $request->query->getInt('page', 1),
+           6
+        );
+
+        $form = $this->createForm(ProductSearchType::class);
+        $form->handleRequest($request);
+       
+    
+        $produits = [];
+        if ($form->isSubmitted() && $form->isValid()) {
+            $criteria = $form->getData();
+       
+            $produits = $produitRepository->search($criteria);
+        }
+//    $serializer = new Serializer([ new ObjectNormalizer() ]);
+//    $formatted = $serializer->normalize($produits);
+//    return new JsonResponse($formatted);
+// $json = $serializer->serialize($produits, 'json', ['groups' => "produits"]);
+
+// //* Nous renvoyons une réponse Http qui prend en paramètre un tableau en format JSON
+// return new Response($json);
+    
+        return $this->render('produits.html.twig', [
+            'form' => $form->createView(),
+            'produits' => $produits,
+            'productliste' => $res, 
+            'controller_name' => 'ProduitController',
+        ]);
         
 
-        return $this->render('produits.html.twig', [
-            'controller_name' => 'ProduitController',
-            'productliste' => $res, 
-        ]);
+      
+            
+     
     }
+
+
+    #[Route('/Recherche', name: 'app_rechproduits')]
+public function Rechercheproduits(ProduitRepository $produitRepository, Request $request): Response
+{
+    $sortOrder = $request->query->get('sort_order', 'asc');
+
+    $produits = $produitRepository->findAll();  //recherche1
+
+
+    if ($sortOrder === 'asc') {
+        usort($produits, function($a, $b) {
+            return $a->getPrix() - $b->getPrix();
+        });
+    } else {
+        usort($produits, function($a, $b) {
+            return $b->getPrix() - $a->getPrix();
+        });
+    
+    }
+   
+    $form = $this->createForm(ProductSearchType::class);
+    $form->handleRequest($request);
+    
+    
+    if ($form->isSubmitted() && $form->isValid()) {
+        $criteria = $form->getData();
+       
+        $produits = $produitRepository->search($criteria);
+        }
+       
+  
+
+    return $this->render('RechercherProduit.html.twig', [
+        'form' => $form->createView(),
+        'produits' => $produits,
+         
+        'sort_order' => $sortOrder,
+        'controller_name' => 'ProduitController',
+    ]);
+    }
+        
 
 
 
@@ -100,5 +179,25 @@ class FrontController extends AbstractController
         ]);
 
     }
+
+   
+    #[Route('Pagination', name: 'app_produit_page', )]
+    public function pagination(ProduitRepository $produitRepository,PaginatorInterface $paginator, Request $request): Response
+    {
+
+        $produit = $produitRepository->findAll(); 
+        $produit = $paginator->paginate(
+            $produit, /* query NOT result */
+            $request->query->getInt('page', 1),
+            2
+        );
+        return $this->render('produits.html.twig', [
+            'productliste' => $produit,
+        ]);
+    }
+   
+
+
+    
 
 }

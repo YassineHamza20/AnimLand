@@ -4,6 +4,33 @@
  * Copyright 2011-2018 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  */
+
+
+
+ .productliste {
+  display: flex;
+  justify-content: center;
+  margin: 20px 0;
+}
+
+.productliste a, .productliste span {
+  padding: 5px 10px;
+  border: 1px solid #ccc;
+  background-color: #f5f5f5;
+  color: #333;
+  text-decoration: none;
+}
+
+.productliste a:hover {
+  background-color: #ddd;
+}
+
+.productliste .current {
+  font-weight: bold;
+  background-color: #ddd;
+}
+
+ 
 :root {
   --blue: #007bff;
   --indigo: #6610f2;

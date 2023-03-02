@@ -12,7 +12,7 @@
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
  
-    <link rel="stylesheet" href="{{asset('css/animate.css')}}">
+    <link rel="stylesheet" href="css/animate.css">
     
     <link rel="stylesheet" href="{{asset('css/owl.carousel.min.css')}}">
     <link rel="stylesheet" href="{{asset('css/owl.theme.default.min.css')}}">
@@ -98,12 +98,10 @@
 
 
 
-    
-
 
 	
 
-    <section class="ftco-section bg-light">
+   <section class="ftco-section bg-light">
 		
     	<div class="container">
 			
@@ -113,57 +111,61 @@
     		<div class="row justify-content-center pb-5 mb-3">
           <div class="col-md-7 heading-section text-center ftco-animate">
             <h2>Produits</h2>
-			<div style=" display: flex; justify-content: center; margin: 20px 0; font-weight: bold; ">
-			{{ knp_pagination_render(productliste) }}
-			</div>
           </div>
         </div>
 		
-		
- <h2>Recherche de produits</h2>
+	    <h1>Recherche de produits</h1>
 <div class="Container">
 
     {{ form_start(form) }}
   <div class="form-group ">
     {{ form_row(form.nom, {'attr':{'class':'form-control'}}) }}
   
-   
+    
+    <div style="margin-top:5px">
     {{ form_row(form.submit) }}
     </div>
     {{ form_end(form) }}
 </div>
-  
+    </div>
 
-	
+<form id="sort-form" method="GET">
+        <button class="btn btn btn-info active btn-sm" type="submit" name="sort_order" value="{{ sort_order == 'asc' ? 'desc' : 'asc' }}">
+            Sort {{ sort_order == 'asc' ? 'Prix Descending' : ' Prix Ascending' }}
+        </button>
+    </form>
 		<div class="p-1 border-bottom"></div>
 			<div class="row">
-  
-			{% for produit in productliste %}
 		
-    			<div class="col-md-4 ftco-animate">
+
+		
+           {% for produit in produits %}
+    
+
+              <div class="col-md-4 ftco-animate">
 	          <div class="block-7">
-			  {% set img = produit.photo %}
+				  {% set img = produit.photo %}
 	          	<img class="img" src="{{asset(img) }}">
-	            <div class="text-center p-4">
+                <div class="text-center p-4">
 	            	<span class="excerpt d-block">{{produit.nom}}</span>
 					
-	            	<span class="price"> <span class="number">{{produit.prix  }}</span> <sub>dt</sub></span>
-	      
-	            </div>
+	            	<span class="price"> <span class="number">{{produit.getPrix | number_format (0,',', ' ') }}</span> <sub>dt</sub></span>
+	        </div>
 	          </div>
- 
+
+
+
 			  
 	        </div>
-			  {% endfor %}
-	       
-
- 
+            {% endfor %}
+       
+    
+			
+	        
 	        </div>
 	      </div>
     	</div>
-		<div>
 		
-		</div>
     </section>
 
     <section class=" ftco-section ftco-no-pt ftco-no-pb ">

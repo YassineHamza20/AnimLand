@@ -11,6 +11,12 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\String\Slugger\SluggerInterface;
 use Symfony\Component\Filesystem\Filesystem;
+use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
+use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
+use Symfony\Component\Serializer\Serializer;
+use Symfony\Component\Serializer\SerializerInterface;
+use Symfony\Component\HttpFoundation\JsonResponse;
+
 
 #[Route('/produit')]
 class ProduitController extends AbstractController
@@ -18,12 +24,16 @@ class ProduitController extends AbstractController
     #[Route('/', name: 'app_produit_index', methods: ['GET'])]
     public function index(ProduitRepository $produitRepository): Response
     {
-
+        
         $res = $produitRepository->findAll(); 
+
+
+        
         return $this->render('produit/index.html.twig', [
             'controller_name' => 'ProduitController',
             'productliste' => $res, 
         ]);
+      
     }
 
 
@@ -38,6 +48,7 @@ class ProduitController extends AbstractController
         $produit = new Produit();
         $form = $this->createForm(ProduitType::class, $produit);
         $form->handleRequest($request);
+       
         $filesystem = new Filesystem();
         if ($form->isSubmitted() && $form->isValid()) {
             $produitRepository->save($produit, true);
@@ -55,6 +66,9 @@ class ProduitController extends AbstractController
 
 
             return $this->redirectToRoute('app_produit_index', [], Response::HTTP_SEE_OTHER);
+            $serializer = new Serializer([ new ObjectNormalizer() ]);
+            $formatted = $serializer->normalize($produits);
+            return new JsonResponse($formatted);
         }
 
         return $this->renderForm('produit/new.html.twig', [
@@ -76,8 +90,18 @@ class ProduitController extends AbstractController
     {
         $form = $this->createForm(ProduitType::class, $produit);
         $form->handleRequest($request);
-
+        $filesystem = new Filesystem();
         if ($form->isSubmitted() && $form->isValid()) {
+            $produitRepository->save($produit, true);
+
+
+            $uploadedFile = $form->get('photo')->getData();
+            $formData =  $uploadedFile->getPathname();
+            $sourcePath = strval($formData);
+            $destinationPath = 'uploads/photos/photo'.strval($produit->getId()).'.png';
+            $produit->setPhoto($destinationPath);
+            $filesystem->copy($sourcePath, $destinationPath);
+        
             $produitRepository->save($produit, true);
 
             return $this->redirectToRoute('app_produit_index', [], Response::HTTP_SEE_OTHER);
@@ -98,4 +122,9 @@ class ProduitController extends AbstractController
 
         return $this->redirectToRoute('app_produit_index', [], Response::HTTP_SEE_OTHER);
     }
+
+   
+
+    
+
 }

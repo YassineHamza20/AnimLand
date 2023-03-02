@@ -63,4 +63,45 @@ class ProduitRepository extends ServiceEntityRepository
 //            ->getOneOrNullResult()
 //        ;
 //    }
+
+
+public function search($criteria)
+{
+    $queryBuilder = $this->createQueryBuilder('p');
+
+    if (!empty($criteria['nom'])) {
+        $queryBuilder->andWhere('p.nom LIKE :nom')
+                     ->setParameter('nom', '%' . $criteria['nom'] . '%');
+    }
+
+    // if (!empty($criteria['minPrice'])) {
+    //     $queryBuilder->andWhere('p.prix >= :minPrice')
+    //                  ->setParameter('minPrice', $criteria['minPrice']);
+    // }
+
+    // if (!empty($criteria['maxPrice'])) {
+    //     $queryBuilder->andWhere('p.prix <= :maxPrice')
+    //                  ->setParameter('maxPrice', $criteria['maxPrice']);
+    // }
+
+    if (array_key_exists('sortField', $criteria) && array_key_exists('sortDirection', $criteria)) {
+        if ($criteria['sortField'] == 'nom') {
+            $queryBuilder->orderBy('p.nom', $criteria['sortDirection']);
+        } elseif ($criteria['sortField'] == 'prix') {
+            $queryBuilder->orderBy('p.prix', $criteria['sortDirection']);
+        }
+    }
+
+    return $queryBuilder->getQuery()->getResult();
+}
+
+
+private $sortField;
+
+public function setSortField(string $sortField): void
+{
+    $this->sortField = $sortField;
+}
+
+
 }

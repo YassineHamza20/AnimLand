@@ -114,30 +114,42 @@
           <div class="col-md-7 heading-section text-center ftco-animate">
             <h2>Produits</h2>
 			<div style=" display: flex; justify-content: center; margin: 20px 0; font-weight: bold; ">
-			{{ knp_pagination_render(productliste) }}
+			{# {{ knp_pagination_render(productliste) }} #}
 			</div>
           </div>
         </div>
 		
 		
- <h2>Recherche de produits</h2>
+ {# <h2>Recherche de produits</h2>
 <div class="Container">
 
     {{ form_start(form) }}
   <div class="form-group ">
     {{ form_row(form.nom, {'attr':{'class':'form-control'}}) }}
   
-   
+    {{ form_row(form.sortField, {'attr':{'class':'form-control'}})}}
+    <div style="margin-top:5px">
     {{ form_row(form.submit) }}
     </div>
     {{ form_end(form) }}
-</div>
-  
+</div> #}
+    </div>
 
 	
+
+         <div class="row">
+
+
+
+
+
+
+
+		
 		<div class="p-1 border-bottom"></div>
 			<div class="row">
-  
+  <th><a href="{{ path('app_produit_sort', {'sortOrder': 'ASC'}) }}">Title ASC</a></th>
+<th><a href="{{ path('app_produit_sort', {'sortOrder': 'DESC'}) }}">Title DESC</a></th>
 			{% for produit in productliste %}
 		
     			<div class="col-md-4 ftco-animate">
@@ -147,7 +159,7 @@
 	            <div class="text-center p-4">
 	            	<span class="excerpt d-block">{{produit.nom}}</span>
 					
-	            	<span class="price"> <span class="number">{{produit.prix  }}</span> <sub>dt</sub></span>
+	            	<span class="price"> <span class="number">{{produit.prix | number_format (0,',', ' ') }}</span> <sub>dt</sub></span>
 	      
 	            </div>
 	          </div>

@@ -54,15 +54,7 @@ class CategoriePController extends AbstractController
 
 
 
-    #[Route('filtre/{id}', name: 'app_categorie_p_show_filtre',)]
-    public function show1(CategorieP $categorieP): Response
-    {
-        return $this->render('produits.html.twig', [
-            'categorie_p' => $categorieP,
-        ]);
 
-
-    }
 
 
 
