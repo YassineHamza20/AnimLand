@@ -44,9 +44,14 @@
 			    		</p>
 		        </div>
 				 {% if app.user %}
+				
 				  <span class="mr-2 d-none d-lg-inline text-gray-600 small"><i class="far fa-user text-primary mr-2 fa-2x "></i>{{ app.user.fullName }}</span>
             <p><a href="{{ logout_path('main') }}" class="btn btn-primary mr-md-4 py-3 px-4"><span class="ion-ios-arrow-forward">Logout</span> </a> </p>
+			 {% if is_granted('ROLE_ADMIN') %}
+				 <p><a href="{{ path('admin_dashboard_index') }}" class="btn btn-primary mr-md-4 py-3 px-4"><span class="ion-ios-arrow-forward">Admin Dashboard</span> </a> </p>
+				 {% endif %}
 			{% else %}
+
 			<p><a href="{{ path('login') }}" class="btn btn-primary mr-md-4 py-3 px-4"><span class="ion-ios-arrow-forward">Login</span> </a> </p>
 			<p><a href="{{ path('registration') }}" class="btn btn-primary mr-md-4 py-3 px-4"><span class="ion-ios-arrow-forward">Register</span> </a> </p>
             {% endif %}
