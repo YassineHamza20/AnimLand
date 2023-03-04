@@ -24,6 +24,15 @@
 
     <link rel="stylesheet" href="{{asset('css/flaticon.css')}}">
     <link rel="stylesheet" href="{{asset('css/style.css')}}">
+      <style>
+        .star {
+            font-size: 1.5rem;
+        }
+        
+        .hover {
+            color: rgb(255, 196, 0);
+        }
+    </style>
   </head>
 
 
@@ -34,6 +43,9 @@
 
 
     <body>
+
+   
+   
 
     <div class="wrap">
 			<div class="container">
@@ -104,6 +116,7 @@
 	
 
     <section class="ftco-section bg-light">
+    
 		
     	<div class="container">
 			
@@ -148,7 +161,14 @@
 	            	<span class="excerpt d-block">{{produit.nom}}</span>
 					
 	            	<span class="price"> <span class="number">{{produit.prix  }}</span> <sub>dt</sub></span>
-	      
+                
+    <i class="star" data-note="1">&#9733;</i>
+    <i class="star" data-note="2">&#9733;</i>
+    <i class="star" data-note="3">&#9733;</i>
+    <i class="star" data-note="4">&#9733;</i>
+    <i class="star" data-note="5">&#9733;</i>
+    
+    
 	            </div>
 	          </div>
  
@@ -162,10 +182,98 @@
 	      </div>
     	</div>
 		<div>
-		
-		</div>
-    </section>
 
+
+
+     
+		 
+		</div>
+     <script>
+
+const productContainers = document.querySelectorAll('.block-7');
+
+productContainers.forEach(container => {
+  const stars = container.querySelectorAll('.star');
+  let check = false;
+
+  stars.forEach(star => {
+    star.addEventListener('mouseover', selectStars);
+    star.addEventListener('mouseleave', unselectStars);
+    star.addEventListener('click', activeSelect);
+  });
+
+  function selectStars(e) {
+    const data = e.target;
+    const etoiles = priviousSiblings(data);
+    if (!check) {
+      etoiles.forEach(etoile => {
+        etoile.classList.add('hover');
+      })
+    }
+
+  }
+
+  function unselectStars(e) {
+    const data = e.target;
+    const etoiles = priviousSiblings(data);
+    if (!check) {
+      etoiles.forEach(etoile => {
+        etoile.classList.remove('hover');
+      })
+    }
+  }
+
+  function activeSelect(e) {
+    if (!check) {
+      check = true;
+      document.querySelector('.note').innerHTML = 'Note ' + e.target.dataset.note;
+    }
+  }
+
+  function priviousSiblings(data) {
+    let values = [data];
+    while (data = data.previousSibling) {
+      if (data.nodeName === 'I') {
+        values.push(data);
+      }
+    }
+    return values;
+  }
+});
+
+
+
+    </script>
+    </section>
+<section class="ftco-section ftco-no-pt ftco-no-pb">
+    	<div class="container">
+    		<div class="row d-flex no-gutters">
+    			<div class="col-md-5 d-flex">
+    						
+    				{% if qrCode %}
+                <img src="{{ qrCode }}" alt="qr-code" style="margin-top: 20px; margin-left:70px">
+            {% endif %}
+    				
+    			</div>
+    			<div class="col-md-7 pl-md-5 py-md-5">
+    				<div class="heading-section pt-md-5">
+	            <h2 class="mb-4">Scannez-moi!</h2>
+    				</div>
+    				<div class="row">
+	    				<div class="col-md-6 services-2 w-100 d-flex">
+	    					<div class="icon d-flex align-items-center justify-content-center"><span class="fa fa-qrcode"></span></div>
+	    					<div class="text pl-3">
+	    						
+	    						<p>Consultez nos réseau sociaux pour plus d’informations</p>
+	    					</div>
+	    				</div>
+	    				
+	    				</div>
+	    			</div>
+	        </div>
+        </div>
+    	</div>
+    </section>
     <section class=" ftco-section ftco-no-pt ftco-no-pb ">
 			<div class="overlay"></div>
     	<div class="container">

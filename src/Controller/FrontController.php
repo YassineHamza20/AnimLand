@@ -17,6 +17,8 @@ use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
 use Symfony\Component\Serializer\Serializer;
 use Symfony\Component\Serializer\SerializerInterface;
+use Endroid\QrCode\Builder\BuilderInterface;
+use App\Services\QrcodeService;
 
 class FrontController extends AbstractController
 {
@@ -43,8 +45,13 @@ class FrontController extends AbstractController
         ]);
     }
     #[Route('/produits', name: 'app_produits')]
-    public function produits(SerializerInterface $serializer, ProduitRepository $produitRepository, Request $request, PaginatorInterface $paginator): Response
+    public function produits(ProduitRepository $produitRepository, Request $request, PaginatorInterface $paginator, BuilderInterface $qrbuilder,  QrcodeService $qrcodeService): Response
     {
+        $qrCode = null;
+        $url = 'https://www.facebook.com/sarra.kachouandi/';
+        $qrCode = $qrcodeService->qrcode($url);
+
+
         $res = $produitRepository->findAll();  //recherche1
         $res = $paginator->paginate(
             $res, /* query NOT result */
@@ -74,6 +81,7 @@ class FrontController extends AbstractController
             'form' => $form->createView(),
             'produits' => $produits,
             'productliste' => $res, 
+            'qrCode' => $qrCode,
             'controller_name' => 'ProduitController',
         ]);
         
