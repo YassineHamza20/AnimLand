@@ -140,12 +140,6 @@
                     <i class="fas fa-fw fa-chart-area"></i>
                     <span>Gestion Produit</span></a>
             </li>
-                </li>
-             <li class="nav-item">
-                <a class="nav-link" href="{{path ('app_produit_stats')}}">
-                    <i class="fas fa-fw fa-chart-area"></i>
-                    <span>Statistiques</span></a>
-            </li>
 
             <!-- Nav Item - Tables -->
             <li class="nav-item">
@@ -387,43 +381,60 @@
 
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
+                        <h1 class="h3 mb-0 text-gray-800">Statistiques</h1>
                         <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
                                 class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
                     </div>
 
-<h1>Liste des Produits</h1>
 
-    <table class="table">
-        <thead>
-            <tr>
-              
-                <th>Nom</th>
-                <th>Prix</th>
-                <th>Photo</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for produit in productliste %}
-            <tr>
-                
-                <td>{{ produit.nom }}</td>
-                <td>{{ produit.prix }}</td>
-                <td>{{ produit.photo }}</td>
-                <td>
-                    <a href="{{ path('app_produit_show', {'id': produit.id}) }}" class="btn btn-info btn-lg active btn-sm" role="button">Afficher Produit</a>
-                    <a href="{{ path('app_produit_edit', {'id': produit.id}) }}" class="btn btn-info btn-lg active btn-sm" role="button" >Modifier</a>
-                     <a href="{{ path('app_produit_delete', {'id': produit.id}) }}" class="btn btn-danger btn-lg active btn-sm" role="button">supprimer</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="5">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
 
-    <a href="{{ path('app_produit_new') }}"  class="btn btn-success btn-lg active btn-sm" role="button">Ajouter Produit </a>
+    <div id="piechart" style="width: 500px; height: 300px;"></div>
+    <div id="barchart" style="width: 500px; height: 300px;"></div>
 
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+        google.charts.load('current', {'packages':['corechart']});
+        google.charts.setOnLoadCallback(drawPieChart);
+        google.charts.setOnLoadCallback(drawBarChart);
+
+        function drawPieChart() {
+            var data = google.visualization.arrayToDataTable([
+                ['Prix', 'Nombre d\'Produit'],
+                {% for produit, count in counts %}
+    ['{{ produit }}', {{ count }}],
+{% endfor %}
+            ]);
+
+            var options = {
+                title: 'Répartition des produits par prix',
+                is3D: true,
+                width: 700,
+                height: 300
+            };
+
+            var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+            chart.draw(data, options);
+        }
+
+        function drawBarChart() {
+            var data = google.visualization.arrayToDataTable([
+                ['Prix', 'Nombre d\'produitw'],
+             {% for produit, count in counts %}
+    ['{{ produit }}', {{ count }}],
+{% endfor %}
+            ]);
+
+            var options = {
+                title: 'Nombre des produits par prix',
+                legend: { position: 'none' },
+                bars: 'vertical',
+                vAxis: { format: 'decimal' },
+                height: 300,
+                width: 700,
+                colors: ['#1b9e77']
+            };
+
+            var chart = new google.visualization.ColumnChart(document.getElementById('barchart'));
+            chart.draw(data, options);
+        }
+    </script>

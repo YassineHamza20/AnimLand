@@ -19,6 +19,7 @@ use Symfony\Component\Serializer\Serializer;
 use Symfony\Component\Serializer\SerializerInterface;
 use Endroid\QrCode\Builder\BuilderInterface;
 use App\Services\QrcodeService;
+use App\Controller\FlashyNotifier;
 
 class FrontController extends AbstractController
 {
@@ -47,12 +48,16 @@ class FrontController extends AbstractController
     #[Route('/produits', name: 'app_produits')]
     public function produits(ProduitRepository $produitRepository, Request $request, PaginatorInterface $paginator, BuilderInterface $qrbuilder,  QrcodeService $qrcodeService): Response
     {
+      
+        
+       
         $qrCode = null;
         $url = 'https://www.facebook.com/sarra.kachouandi/';
         $qrCode = $qrcodeService->qrcode($url);
 
 
-        $res = $produitRepository->findAll();  //recherche1
+        $res = $produitRepository->findAll(); 
+        
         $res = $paginator->paginate(
             $res, /* query NOT result */
             $request->query->getInt('page', 1),
@@ -69,6 +74,7 @@ class FrontController extends AbstractController
        
             $produits = $produitRepository->search($criteria);
         }
+        
 //    $serializer = new Serializer([ new ObjectNormalizer() ]);
 //    $formatted = $serializer->normalize($produits);
 //    return new JsonResponse($formatted);
@@ -204,6 +210,47 @@ public function Rechercheproduits(ProduitRepository $produitRepository, Request 
         ]);
     }
    
+
+    #[Route('/produits/stats', name: 'app_produit_stats', methods: ['GET'])]
+public function produitsstats(): Response
+{
+    $entityManager = $this->getDoctrine()->getManager();
+    $repository = $entityManager->getRepository(Produit::class);
+
+    // Count total number of annonces
+    $totalProduits = $repository->createQueryBuilder('a')
+        ->select('COUNT(a.id)')
+        ->getQuery()
+        ->getSingleScalarResult();
+
+    // Query for all products and group them by category
+    $query = $repository->createQueryBuilder('a')
+        ->select('a.prix as prix, COUNT(a.id) as count, COUNT(a.id) / :total * 100 as percentage')
+        ->setParameter('total', $totalProduits)
+        ->groupBy('a.prix')
+        ->getQuery();
+
+
+
+        
+
+    $produit = $query->getResult();
+
+    
+
+    // Calculate the counts array
+    $counts = [];
+    foreach ($produit as $item) {
+        $counts[$item['prix']] = $item['count'];
+    
+    }
+
+    return $this->render('stats.html.twig', [
+        'produit' => $produit,
+        'counts' => $counts,
+    ]);
+}
+
 
 
     

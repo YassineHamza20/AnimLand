@@ -63,14 +63,9 @@ class ProduitController extends AbstractController
             $filesystem->copy($sourcePath, $destinationPath);
         
             $produitRepository->save($produit, true);
-
-
             return $this->redirectToRoute('app_produit_index', [], Response::HTTP_SEE_OTHER);
-            $serializer = new Serializer([ new ObjectNormalizer() ]);
-            $formatted = $serializer->normalize($produits);
-            return new JsonResponse($formatted);
-        }
 
+        }
         return $this->renderForm('produit/new.html.twig', [
             'produit' => $produit,
             'form' => $form,
@@ -124,6 +119,46 @@ class ProduitController extends AbstractController
     }
 
    
+    #[Route('/produits/stats', name: 'app_produit_stats', methods: ['GET'])]
+    public function produitsstats(): Response
+    {
+        $entityManager = $this->getDoctrine()->getManager();
+        $repository = $entityManager->getRepository(Produit::class);
+    
+        // Count total number of annonces
+        $totalProduits = $repository->createQueryBuilder('a')
+            ->select('COUNT(a.id)')
+            ->getQuery()
+            ->getSingleScalarResult();
+    
+        // Query for all products and group them by category
+        $query = $repository->createQueryBuilder('a')
+            ->select('a.prix as prix, COUNT(a.id) as count, COUNT(a.id) / :total * 100 as percentage')
+            ->setParameter('total', $totalProduits)
+            ->groupBy('a.prix')
+            ->getQuery();
+    
+    
+    
+            
+    
+        $produit = $query->getResult();
+    
+        
+    
+        // Calculate the counts array
+        $counts = [];
+        foreach ($produit as $item) {
+            $counts[$item['prix']] = $item['count'];
+        
+        }
+    
+        return $this->render('produit/stats.html.twig', [
+            'produit' => $produit,
+            'counts' => $counts,
+        ]);
+    }
+    
 
     
 
