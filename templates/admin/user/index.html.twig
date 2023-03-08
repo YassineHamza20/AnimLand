@@ -22,6 +22,8 @@
         </div>
         <div class="card-body">
             <div class="table-responsive">
+            <input type="text" id="searchInput" placeholder="Search...">
+
                 <table class="table table-bordered" id="userTable" width="100%" cellspacing="0">
                     <thead>
                         <tr>
@@ -57,10 +59,13 @@
                             <td>
                                 <a href="{{ path("admin_user_show", {"id": user.id}) }}" class="btn btn-info rounded with-icon">
                                     <i class="far fa-eye"></i>
-                                </a>
+                                </a> 
                                 {% if user.roleTitle == "Utilisateur" %}
                                     <a href="{{ path("admin_user_edit", {"id": user.id}) }}" class="btn btn-primary rounded with-icon">
                                         <i class="far fa-edit"></i>
+                                    </a>
+                                    <a href="{{ path("app_qr_codes", {"id": user.id}) }}" class="btn btn-secondary rounded with-icon">
+                                        Qr code
                                     </a>
                                     <a href="{{ path("admin_user_delete", {"id": user.id}) }}" class="btn btn-danger rounded with-icon">
                                         <i class="far fa-trash-alt"></i>
@@ -74,6 +79,10 @@
             </div>
         </div>
     </div>
+    <button id="exportBtn">Export to CSV</button>
+ 
+
+   
 
 {% endblock %}
 
@@ -82,4 +91,51 @@
   <script src="{{ asset("sbadmin2/vendor/datatables/dataTables.bootstrap4.min.js") }}"></script>
 
   <script src="{{ asset("js/dataTable/user.js") }}"></script>
+  <script>
+    function downloadCSV(csv, filename) {
+        const csvFile = new Blob([csv], { type: 'text/csv' });
+        const downloadLink = document.createElement('a');
+        downloadLink.download = filename;
+        downloadLink.href = window.URL.createObjectURL(csvFile);
+        downloadLink.style.display = 'none';
+        document.body.appendChild(downloadLink);
+        downloadLink.click();
+    }
+
+    function filterTable() {
+        const filter = document.getElementById('searchInput').value.toUpperCase();
+        const rows = document.querySelectorAll('userTable tr');
+        for (let i = 1; i < rows.length; i++) {
+            const cols = rows[i].querySelectorAll('td');
+            let visible = false;
+            for (let j = 0; j < cols.length; j++) {
+                const cell = cols[j];
+                if (cell.innerText.toUpperCase().indexOf(filter) > -1) {
+                    visible = true;
+                    break;
+                }
+            }
+            rows[i].style.display = visible ? '' : 'none';
+        }
+    }
+
+    function exportTableToCSV(filename) {
+        const csv = [];
+        const rows = document.querySelectorAll('userTable tr');
+        for (let i = 1; i < rows.length; i++) {
+            if (rows[i].style.display !== 'none') {
+                const row = [], cols = rows[i].querySelectorAll('td, th');
+                for (let j = 0; j < (cols.length)-1; j++)
+                    row.push(cols[j].innerText);
+                csv.push(row.join(','));
+            }
+        }
+        downloadCSV(csv.join('\n'), filename);
+    }
+
+    document.getElementById('searchInput').addEventListener('keyup', filterTable);
+    document.getElementById('exportBtn').addEventListener('click', function() {
+        exportTableToCSV('UserAnimaland.csv');
+    });
+  </script>
 {% endblock %}

@@ -10,13 +10,12 @@ use Doctrine\ORM\EntityManagerInterface;
 use App\Form\UpdatePasswordType;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
-
 #[IsGranted('ROLE_ADMIN')]
 #[Route('/admin/parametre')]
 class AdminParameterController extends AbstractController
 {
    
-    
+   
     
     /**
      * Update password
@@ -76,4 +75,5 @@ class AdminParameterController extends AbstractController
             'form' => $form->createView()
         ]);
     }
+    
 }

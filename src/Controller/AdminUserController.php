@@ -13,11 +13,21 @@ use App\Form\UserEditType;
 use App\Form\UserAddType;
 use Doctrine\ORM\EntityManagerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 
 #[IsGranted('ROLE_ADMIN')]
 #[Route('/admin/utilisateur')]
 class AdminUserController extends AbstractController
 {
+    #[Route('/admin/utilisateur/Allusers', name: "list")]
+    public function getusers(UserRepository $repo, NormalizerInterface $normalizer)
+    {
+        $users = $repo->findAll();
+        $usersNormalises = $normalizer->normalize($users,'json', ['groups' =>"users"]);
+        $json = json_encode($usersNormalises);
+        return new Response($json);
+    }
+   
     #[Route('/', name: 'admin_user_index', methods: ['GET'])]
     public function index(UserRepository $userRepository): Response
     {
@@ -25,6 +35,7 @@ class AdminUserController extends AbstractController
             'users' => $userRepository->findAll(),
         ]);
     }
+    
 
     #[Route('/add', name: 'admin_user_add', methods: ['GET', 'POST'])]
     public function add(Request $request, UserRepository $userRepository): Response
@@ -101,4 +112,5 @@ class AdminUserController extends AbstractController
 
         return $this->redirectToRoute('admin_user_index');
     }
+   
 }
