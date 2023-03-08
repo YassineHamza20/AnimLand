@@ -121,13 +121,19 @@
     <a href="{{ path('app_reclamation_edit', {'id': reclamation.id}) }}  " class="btn btn-primary">edit</a>
 <p>&nbsp;&nbsp;&nbsp;</p>
     {{ include('front/reclamation/_delete_form.html.twig') }}
+<p>&nbsp;&nbsp;&nbsp;</p>
+    <div  >
+         <form action="{{ path('pdf', {'id': reclamation.id}) }}" method="post">
+        <button type="submit" class="btn btn-primary"   ; >Print PDF</button>
+    </form>
+       </div>
 {% endblock %}
 
-       
-     
- 
+     	 <link rel="stylesheet" href="{{ asset('bundles/mercuryseriesflashy/css/flashy.css') }}">
+   <script src="//code.jquery.com/jquery.js"></script>
+   <script src="{{ asset('bundles/mercuryseriesflashy/js/flashy.js') }}"></script>
+    {{ include('@MercurySeriesFlashy/flashy.html.twig') }}
 
-					 
 									 
 								</div> 
 								<div class="col-md-5 d-flex align-items-stretch">

@@ -2,27 +2,92 @@
 
 namespace App\Controller;
 
+
 use App\Entity\Reclamation;
 use App\Form\ReclamationType;
 use App\Repository\ReclamationRepository;
+use MercurySeries\FlashyBundle\FlashyNotifier;
+use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Routing\Annotation\Route;
- 
+
+use Knp\Component\Pager\PaginatorInterface;
+use Dompdf\Dompdf;
+use Dompdf\Options; 
+
+
  
 #[Route('/')] 
 class ReclamationController extends AbstractController
 {
+  
     #[Route('/reclamation', name: 'app_reclamation', methods: ['GET'])]
-    public function reclamation(ReclamationRepository $reclamationRepository): Response
+    public function reclamation(FlashyNotifier $flashy,ReclamationRepository $reclamationRepository, Request $request, PaginatorInterface $paginator): Response
     {
+        $reclamation = $reclamationRepository->findAll();  //recherche1
+        $reclamation = $paginator->paginate(
+            $reclamation, /* query NOT result */
+            $request->query->getInt('page', 1),
+           5
+        );
+            $flashy->mutedDark('Bienvenue', 'http://127.0.0.1:8000/app_a');
+        
         return $this->render('front/reclamation/index.html.twig', [
-            'reclamations' => $reclamationRepository->findAll(),
+         //   'reclamations' => $reclamationRepository->findAll(),
+            'reclamation' => $reclamation,
         ]);
     }
  
+
+    #[Route('/{id}/print', name: 'pdf')]
+    public function printReclamation(Reclamation $reclamation): Response
+    {
+        // Render the view to HTML
+        $html = $this->renderView('front/reclamation/pdf.html.twig', [
+            'title' => 'My PDF',
+            'reclamation' => $reclamation,
+        ]);
+    
+        // Create a new Dompdf instance
+        $dompdf = new Dompdf();
+    
+        // Load the HTML into the Dompdf instance
+        $dompdf->loadHtml($html);
+    
+        // Set the paper size and orientation
+        $dompdf->setPaper('A4', 'portrait');
+    
+        // Render the PDF
+        $dompdf->render();
+    
+        // Generate the response containing the PDF
+        $response = new Response($dompdf->output());
+        $response->headers->set('Content-Type', 'application/pdf');
+        $response->headers->set('Content-Disposition', 'attachment;filename="reclamation_' . $reclamation->getId() . '.pdf"');
+    
+        return $response;
+    }
+    
+    
+
  
+    public function reclamations(reclamationRepository $reclamationRepository, Request $request, PaginatorInterface $paginator): Response
+    {
+        $reclamation = $reclamationRepository->findAll();  //recherche1
+        $reclamation = $paginator->paginate(
+            $reclamation, /* query NOT result */
+            $request->query->getInt('page', 1),6);
+             return $this->render('front/reclamation/index.html.twig', [
+            'form' => $form->createView(),
+            'reclamation' => $reclamation,
+            'reclamationliste' => $res, 
+            'controller_name' => 'reclamationController',
+        ]);
+    }
+
+
+
     #[Route('/app_ad', name: 'app_ad')]
     public function index(): Response
     {
@@ -68,42 +133,40 @@ class ReclamationController extends AbstractController
         ]);
     } 
 
-
-
-
-
-
   
     #[Route('/new', name: 'app_reclamation_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, ReclamationRepository $reclamationRepository): Response
+    public function new(FlashyNotifier $flashy,Request $request, ReclamationRepository $reclamationRepository): Response
     {
         $reclamation = new Reclamation();
         $form = $this->createForm(ReclamationType::class, $reclamation);
         $form->handleRequest($request);
+       
 
         if ($form->isSubmitted() && $form->isValid()) {
             $reclamationRepository->save($reclamation, true);
-
+            
             return $this->redirectToRoute('app_reclamation', [], Response::HTTP_SEE_OTHER);
         }
-
+        
+      
+        $flashy->mutedDark('Creation', 'http://127.0.0.1:8000/app_a');
+        
         return $this->renderForm('front/reclamation/new.html.twig', [
+         //   'reclamations' => $reclamationRepository->findAll(),
             'reclamation' => $reclamation,
             'form' => $form,
         ]);
     }
- 
-
+    
     #[Route('/{id}', name: 'app_reclamation_show', methods: ['GET'])]
-    public function show(Reclamation $reclamation): Response
+    public function show(FlashyNotifier $flashy,Reclamation $reclamation): Response
     {
+        $flashy->mutedDark('Show', 'http://127.0.0.1:8000/app_a');
         return $this->render('front/reclamation/show.html.twig', [
             'reclamation' => $reclamation,
         ]);
     }
 
-
-   
 
 
     #[Route('/{id}/edit', name: 'app_reclamation_edit', methods: ['GET', 'POST'])]
@@ -136,16 +199,8 @@ class ReclamationController extends AbstractController
 
         return $this->redirectToRoute('app_reclamation', [], Response::HTTP_SEE_OTHER);
     }
-
-
-     
-    
-    
-
-    
-
-     
+ 
 
 
 }
-
+ 

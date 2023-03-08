@@ -1,5 +1,8 @@
 <?php
 
+
+
+
 namespace App\Entity;
 
 use App\Repository\ReclamationRepository;
@@ -73,6 +76,8 @@ class Reclamation
     }
 
 
+     
+    
     public function __toString()
     {   return $this->id  ; 
         return $this->objet  ; 
@@ -81,6 +86,11 @@ class Reclamation
     }
 
 
-  
+     
+
+     
+     
+    
 
 }
+

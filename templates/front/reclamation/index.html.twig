@@ -1,28 +1,18 @@
-
-
+ 
+ <script src="https://cdn.jsdelivr.net/npm/darkmode-js@1.5.7/lib/darkmode-js.min.js"></script>
+<script>
+  function addDarkmodeWidget() {
+    new Darkmode().showWidget();
+  }
+  window.addEventListener('load', addDarkmodeWidget);
+</script>
+ 
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title> AnimaLand</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:200,300,400,500,600,700,800&display=swap" rel="stylesheet">
-
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
- 
-    <link rel="stylesheet" href="{{asset('css/animate.css')}}">
-    
-    <link rel="stylesheet" href="{{asset('css/owl.carousel.min.css')}}">
-    <link rel="stylesheet" href="{{asset('css/owl.theme.default.min.css')}}">
-    <link rel="stylesheet" href="{{asset('css/magnific-popup.css')}}">
 
 
-    <link rel="stylesheet" href="{{asset('css/bootstrap-datepicker.css')}}">
-    <link rel="stylesheet" href="{{asset('css/jquery.timepicker.css')}}">
-
-    <link rel="stylesheet" href="{{asset('css/flaticon.css')}}">
-    <link rel="stylesheet" href="{{asset('css/style.css')}}">
+   
   </head>
   <body>
 
@@ -35,6 +25,7 @@
 							<a href="#"><span class="fa fa-paper-plane mr-1"></span> AnimaLand@esprit.tn</a>
 						</p>
 					</div>
+          
 					<div class="col-md-6 d-flex justify-content-md-end">
 						<div class="social-media">
 			    		<p class="mb-0 d-flex">
@@ -53,6 +44,7 @@
 			<div style="margin-right: 50px;"> <a class="navbar-brand"  ><span><img src="images/logo-01.png" alt="Bootstrap" class="img-responsive" style="max-width: 20%"> </span>AnimaLand</a></div>	      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
 	        <span class="fa fa-bars"></span> Menu
 	      </button>
+        
 	      <div class="collapse navbar-collapse" id="ftco-nav">
 	        <ul class="navbar-nav ml-auto">
 	        	<li class="nav-item"><a  href="{{path ('app_a')}}" class="nav-link">Accueil</a></li>            
@@ -67,6 +59,7 @@
 	      </div>
 	    </div>
 	  </nav>
+    
     <!-- END nav -->
     <section class="hero-wrap hero-wrap-2" style="background-image: url('images/bg_2.jpg');" data-stellar-background-ratio="0.5">
       <div class="overlay"></div>
@@ -145,8 +138,9 @@
                   <th>actions</th>
             </tr>
         </thead>
+       
         <tbody>
-        {% for reclamation in reclamations %}
+        {% for reclamation in reclamation %}
             <tr>
                 
                 <td>{{ reclamation.id }}</td>
@@ -165,12 +159,48 @@
         {% endfor %}
         </tbody>
     </table>
-
+ 
     <a href="{{ path('app_reclamation_new') }}"  class="btn btn-primary">Create new</a>   <p>&nbsp;&nbsp;&nbsp;</p>
      <a href="{{ path('app_reponse_index_front') }}"  class="btn btn-primary">les reponses</a>
-    
-									 
+
 								</div> 
+                {{knp_pagination_render(reclamation)}} <html> <style>  hr { border-top: 4px solid #095484;}</style><hr/>
+
+    <div id="google_translate_element"></div><script type="text/javascript">
+function googleTranslateElementInit() {
+  new google.translate.TranslateElement({pageLanguage: 'ko', layout: google.translate.TranslateElement.InlineLayout.SIMPLE}, 'google_translate_element');
+}
+</script><script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+
+
+ 
+
+ 
+
+
+    <title> AnimaLand</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:200,300,400,500,600,700,800&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+ 
+    <link rel="stylesheet" href="{{asset('css/animate.css')}}">
+    
+    <link rel="stylesheet" href="{{asset('css/owl.carousel.min.css')}}">
+    <link rel="stylesheet" href="{{asset('css/owl.theme.default.min.css')}}">
+    <link rel="stylesheet" href="{{asset('css/magnific-popup.css')}}">
+
+
+    <link rel="stylesheet" href="{{asset('css/bootstrap-datepicker.css')}}">
+    <link rel="stylesheet" href="{{asset('css/jquery.timepicker.css')}}">
+
+    <link rel="stylesheet" href="{{asset('css/flaticon.css')}}">
+    <link rel="stylesheet" href="{{asset('css/style.css')}}">
+
+<script src="http://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 								<div class="col-md-5 d-flex align-items-stretch">
 									
 								</div>
@@ -183,6 +213,22 @@
 
 				          </div>
 	<!-- <div id="map" class="map"></div>-->	
+
+  <div id="google_translate_element"></div><script type="text/javascript">
+function googleTranslateElementInit() {
+  new google.translate.TranslateElement({pageLanguage: 'ko', layout: google.translate.TranslateElement.InlineLayout.SIMPLE}, 'google_translate_element');
+}
+</script><script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+
+
+<script src="http://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+
+<link rel="stylesheet" href="{{ asset('bundles/mercuryseriesflashy/css/flashy.css') }}">
+   <script src="//code.jquery.com/jquery.js"></script>
+   <script src="{{ asset('bundles/mercuryseriesflashy/js/flashy.js') }}"></script>
+    {{ include('@MercurySeriesFlashy/flashy.html.twig') }}
 
     <footer class="footer">
 			<div class="container">
@@ -277,4 +323,5 @@
 
     
   </body>
-</html>   -->
+</html>    
+
