@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\ServiceV;
 use App\Form\ServiceVType;
 use App\Repository\ServiceVRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -69,7 +70,7 @@ class ServiceVController extends AbstractController
     #[Route('/{id}', name: 'app_service_v_delete', methods: ['POST'])]
     public function delete(Request $request, ServiceV $serviceV, ServiceVRepository $serviceVRepository): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$serviceV->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $serviceV->getId(), $request->request->get('_token'))) {
             $serviceVRepository->remove($serviceV, true);
         }
 

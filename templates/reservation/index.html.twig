@@ -1,0 +1,37 @@
+{% extends "back/baseback.html.twig" %}
+
+{% block title %}Service Vétérinaire{% endblock %}
+
+
+{% block body %}
+    <h1>Service Vétérinaire</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>USER</th>
+                <th>SERVICE</th>
+                <th>DATE</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for item in reservation %}
+            <tr>
+                <td>{{ item.id }}</td>
+                <td>{{ item.userId.email }}</td>
+                <td>{{ item.serviceId.nom }}</td>
+                <td>{{ item.date ? item.date|date('Y-m-d') : '' }}</td>
+                <td>
+                    <a href="{{ path('app_reser_show', {'id': item.id}) }}" class="btn btn-info active btn-sm" role="button" >Afficher</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}

@@ -16,15 +16,15 @@ class ServiceV
     private ?int $id = null;
 
     #[ORM\Column]
-    #[Assert\NotBlank (message:"le champs est vide")]
+    #[Assert\NotBlank(message: "le champs est vide")]
     private ?float $prix = null;
 
     #[ORM\Column(length: 255)]
-    #[Assert\NotBlank (message:"le champs est vide")]
+    #[Assert\NotBlank(message: "le champs est vide")]
     private ?string $nom = null;
 
     #[ORM\Column(length: 255)]
-    #[Assert\NotBlank (message:"le champs est vide")]
+    #[Assert\NotBlank(message: "le champs est vide")]
     private ?string $description = null;
 
     #[ORM\Column(type: Types::DATE_MUTABLE)]
@@ -33,6 +33,9 @@ class ServiceV
     #[ORM\ManyToOne(inversedBy: 'serviceVs')]
     #[ORM\JoinColumn(nullable: false)]
     private ?CategorieV $category = null;
+
+    #[ORM\Column]
+    private ?int $viewCount = 0;
 
 
     public function getId(): ?int
@@ -96,6 +99,18 @@ class ServiceV
     public function setCategory(?CategorieV $category): self
     {
         $this->category = $category;
+
+        return $this;
+    }
+
+    public function getViewCount(): ?int
+    {
+        return $this->viewCount;
+    }
+
+    public function setViewCount(int $viewCount): self
+    {
+        $this->viewCount = $viewCount;
 
         return $this;
     }

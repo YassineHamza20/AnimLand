@@ -1,0 +1,33 @@
+{% extends "back/baseback.html.twig" %}
+
+{% block title %}Service Vétérinaire{% endblock %}
+
+{% block body %}
+    <h1>Service Vétérinaire</h1>
+
+    <a href="{{ path('app_reser_pdf', {'id': reservation.id }) }}"class="btn btn-info active btn-sm" role="button">EXPORT PDF</a>
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ reservation.id }}</td>
+            </tr>
+            <tr>
+                <th>User</th>
+                <td>{{ reservation.userId.email }}</td>
+            </tr>
+            <tr>
+                <th>Service</th>
+                <td>{{ reservation.serviceId.nom }}</td>
+            </tr>
+            <tr>
+                <th>Date</th>
+                <td>{{ reservation.date ? reservation.date|date('Y-m-d') : '' }}</td>
+            </tr>
+        
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_reser') }}"class="btn btn-info active btn-sm" role="button">page précedente</a>
+
+{% endblock %}

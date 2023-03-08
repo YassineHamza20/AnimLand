@@ -7,8 +7,11 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+
 
 #[ORM\Entity(repositoryClass: CategorieVRepository::class)]
+#[UniqueEntity('type')]
 class CategorieV
 {
     #[ORM\Id]
@@ -16,7 +19,7 @@ class CategorieV
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255,unique:true)]
     #[Assert\NotBlank (message:"le champs est vide")]
     private ?string $type = null;
 
@@ -34,7 +37,7 @@ class CategorieV
     }
 
     public function getType(): ?string
-    {
+    {   
         return $this->type;
     }
 
