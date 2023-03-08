@@ -16,7 +16,7 @@ use Psr\Log\LoggerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Mime\Email;
-
+use Knp\Component\Pager\PaginatorInterface;
 class FrontController extends AbstractController
 {
     #[Route('/front', name: 'app_front')]
@@ -28,13 +28,19 @@ class FrontController extends AbstractController
     }
 
     #[Route('/vet', name: 'app_vet')]
-    public function vet(ServiceVRepository $serviceVRepository,): Response
-    {
+    public function vet(Request $request,ServiceVRepository $serviceVRepository,PaginatorInterface $paginator): Response
+    {   $res = $serviceVRepository->findAll();
+        $res = $paginator->paginate(
+        $res, /* query NOT result */
+        $request->query->getInt('page', 1),
+       4
+    );
         return $this->render('vet.html.twig', [
-            'service_vs' => $serviceVRepository->findAll(),
+        
+            'service_vs' => $res,
         ]);
     }
-
+     //eli fiha reservation w nombre de vue w email
     #[Route('/vet/{id}', name: 'app_vet_show', methods: ['GET', 'POST'])]
     public function showVet(LoggerInterface $logger, MailerInterface $mailer, ServiceV $service, Request $request, ReservationRepository $reservationRepository, ManagerRegistry $doctrine, EntityManagerInterface $entityManager): Response
     {
