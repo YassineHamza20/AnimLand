@@ -1,7 +1,10 @@
 <?php
 
 namespace App\Controller;
-
+use App\Entity\Reservation;
+use App\Entity\ServiceV;
+use App\Form\ReservationType;
+use App\Repository\ReservationRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -11,15 +14,15 @@ use App\Repository\ProduitRepository;
 use App\Entity\CategorieP;
 use App\Form\ProductSearchType;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\JsonResponse;
 use Knp\Component\Pager\PaginatorInterface;
-use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
-use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
-use Symfony\Component\Serializer\Serializer;
-use Symfony\Component\Serializer\SerializerInterface;
 use Endroid\QrCode\Builder\BuilderInterface;
 use App\Services\QrcodeService;
-use App\Controller\FlashyNotifier;
+use App\Repository\ServiceVRepository;
+use Doctrine\ORM\EntityManagerInterface;
+use Doctrine\Persistence\ManagerRegistry;
+use Psr\Log\LoggerInterface;
+use Symfony\Component\Mailer\MailerInterface;
+use Symfony\Component\Mime\Email;
 
 class FrontController extends AbstractController
 {
@@ -31,18 +34,66 @@ class FrontController extends AbstractController
         ]);
     }
 
+  
     #[Route('/vet', name: 'app_vet')]
-    public function vet(): Response
+    public function vet(ServiceVRepository $serviceVRepository,): Response
     {
         return $this->render('vet.html.twig', [
-            'controller_name' => 'FrontController',
+            'service_vs' => $serviceVRepository->findAll(),
         ]);
     }
+
+    #[Route('/vet/{id}', name: 'app_vet_show', methods: ['GET', 'POST'])]
+    public function showVet(LoggerInterface $logger, MailerInterface $mailer, ServiceV $service, Request $request, ReservationRepository $reservationRepository, ManagerRegistry $doctrine, EntityManagerInterface $entityManager): Response
+    {
+
+
+        $service->setViewCount($service->getViewCount() + 1);
+        $entityManager->flush();
+
+        $reserv = new Reservation();
+        $form = $this->createForm(ReservationType::class, $reserv);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $reserv->setServiceId($service);
+            $entityManager = $doctrine->getManager();
+            $entityManager->persist($reserv);
+
+            $reservationRepository->save($reserv, true);
+
+            $email = (new Email())
+                ->from('yasmine.jebaliii@gmail.com')
+                ->to($reserv->getUserId()->getEmail())
+                ->subject('Reservation Confirmed')
+                ->text('Your reservation has been confirmed');
+
+            try {
+                $mailer->send($email);
+                $logger->info('Email sent successfully.');
+            } catch (\Exception $e) {
+                $logger->error('Error sending email: ' . $e->getMessage());
+            }
+
+            return $this->render('vet/show.html.twig', [
+                'service_v' => $service,
+                'form' => $form->createView(),
+            ]);
+        }
+
+
+        return $this->render('vet/show.html.twig', [
+            'service_v' => $service,
+            'form' => $form->createView(),
+        ]);
+    }
+
     #[Route('/services', name: 'app_services')]
     public function services(): Response
     {
         return $this->render('services.html.twig', [
             'controller_name' => 'FrontController',
+
         ]);
     }
     #[Route('/produits', name: 'app_produits')]
@@ -195,20 +246,20 @@ public function Rechercheproduits(ProduitRepository $produitRepository, Request 
     }
 
    
-    #[Route('Pagination', name: 'app_produit_page', )]
-    public function pagination(ProduitRepository $produitRepository,PaginatorInterface $paginator, Request $request): Response
-    {
+    // #[Route('Pagination', name: 'app_produit_page', )]
+    // public function pagination(ProduitRepository $produitRepository,PaginatorInterface $paginator, Request $request): Response
+    // {
 
-        $produit = $produitRepository->findAll(); 
-        $produit = $paginator->paginate(
-            $produit, /* query NOT result */
-            $request->query->getInt('page', 1),
-            2
-        );
-        return $this->render('produits.html.twig', [
-            'productliste' => $produit,
-        ]);
-    }
+    //     $produit = $produitRepository->findAll(); 
+    //     $produit = $paginator->paginate(
+    //         $produit, /* query NOT result */
+    //         $request->query->getInt('page', 1),
+    //         2
+    //     );
+    //     return $this->render('produits.html.twig', [
+    //         'productliste' => $produit,
+    //     ]);
+    // }
    
 
     #[Route('/produits/stats', name: 'app_produit_stats', methods: ['GET'])]
