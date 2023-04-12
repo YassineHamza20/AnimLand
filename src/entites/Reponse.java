@@ -84,6 +84,11 @@ public class Reponse {
     public int getReclamation_id() {
         return reclamation_id;
     }
+    
+     public void setReclamation_id(int reclamation_id) {
+        this.reclamation_id = reclamation_id;
+    }
+    
  
     public void setDescription(String description) {
         this.description = description;
@@ -94,10 +99,9 @@ public class Reponse {
         return "Reponse{" + "id=" + id + ", objet=" + objet + ", description=" + description + ", nom=" + nom + ", reclamation_id=" + reclamation_id + '}';
     }
 
-    public void setReclamation_id(int reclamation_id) {
-        this.reclamation_id = reclamation_id;
-    }
- 
+    
+    
+
     
  
 }

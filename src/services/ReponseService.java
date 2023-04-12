@@ -86,4 +86,33 @@ public class  ReponseService {
             System.err.println(ex.getMessage());
         }
     }
+    
+    public List<Reponse> ChercherReponse() {
+       
+        List<Reponse> Reponses = new ArrayList<>();
+
+        try {
+            String sql = "SELECT * FROM Reponse ";
+            ResultSet rs;
+            PreparedStatement ste;
+            ste = conx.prepareStatement(sql);
+            rs = ste.executeQuery();
+            while (rs.next()) {
+                Reponse p = new Reponse();
+                p.setId(rs.getInt("id"));
+                p.setObjet(rs.getString("objet"));
+                p.setDescription(rs.getString("Description"));
+                p.setNom(rs.getString("nom"));
+                  p.setReclamation_id(rs.getInt("reclamation_id"));
+                Reponses.add(p);
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+
+        }
+        System.out.println("------> " + Reponses.size());
+        return Reponses;
+    }
+    
+    
 }

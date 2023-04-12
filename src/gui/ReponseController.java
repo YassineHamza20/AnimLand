@@ -5,7 +5,7 @@
  */
 package gui;
 
-import entites.Reclamation;
+import entites.Reponse;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -19,23 +19,25 @@ import javafx.scene.Parent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
-import services.ReclamationService;
+import services.ReponseService;
 
 /**
  * FXML Controller class
  *
  * @author sinoh
  */
-public class ReclamationController implements Initializable {
+public class ReponseController implements Initializable {
 
     @FXML
-    private TextField tfobjet;
+    private TextField tfobjetr;
     @FXML  
-    private TextField tfdesciption;
+    private TextField tfdesciptionr;
     @FXML
-    private TextField tfnom;
+    private TextField tfnomr;
+   @FXML
+    private TextField tfrecidr;
     @FXML
-    private Button btnenvoyer;
+    private Button btnenvoyerr;
 
     
     
@@ -48,12 +50,13 @@ public class ReclamationController implements Initializable {
     }    
 
     @FXML
-    private void savereclamation(ActionEvent event) {
-        String objet = tfobjet.getText();
-        String description = tfdesciption.getText();
-        String nom = tfnom.getText();
-        
-        if (objet.isEmpty() ) {
+    private void savereponse(ActionEvent event) {
+        String objet = tfobjetr.getText();
+        String description = tfdesciptionr.getText();
+        String nom = tfnomr.getText();
+          int reclamation_id = Integer.parseInt(tfrecidr.getText());
+          
+          if (objet.isEmpty() ) {
             Alert alert = new Alert(Alert.AlertType.ERROR, "veuillez remplir le champ objet");
             alert.showAndWait();
         } else if (description.isEmpty()) {
@@ -63,30 +66,30 @@ public class ReclamationController implements Initializable {
             // afficher un message d'erreur et sortir de la méthode
             Alert alert = new Alert(Alert.AlertType.ERROR, "veuillez remplir le champ nom");
             alert.showAndWait();
-       
+  
         }else{
         
-        
-        Reclamation r = new  Reclamation(objet , description, nom);
-           ReclamationService ps = new ReclamationService();
+        Reponse r = new  Reponse(objet , description, nom,reclamation_id);
+           ReponseService ps = new ReponseService();
            ps.ajouter(r);
-           FXMLLoader loader=new FXMLLoader(getClass().getResource("detailswindow.fxml"));
+           FXMLLoader loader=new FXMLLoader(getClass().getResource("detailswindow2.fxml"));
+          
         try {
             Parent root = loader.load();
-            DetailswindowController dwc = loader.getController();
+            Detailswindow2Controller dwc2 = loader.getController();
             
-            dwc.setobjet(r.getObjet());
-            dwc.setdescription(r.getDescription());
-            dwc.setnom(r.getNom());
-            tfobjet.getScene().setRoot(root) ;
+            dwc2.setobjet(r.getObjet());
+            dwc2.setdescription(r.getDescription());
+            dwc2.setnom(r.getNom());
+            dwc2.setreclamation_id(""+r.getReclamation_id());
+            tfobjetr.getScene().setRoot(root) ;
           
-             
+             //tfnom.getScene().setRoot(root);
             
-            
-            
+      
         } catch (IOException ex) {
              System.out.println(" Error: "+ ex.getMessage());
         }
-    }}
+    }
     
-}
+    }}

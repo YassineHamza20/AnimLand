@@ -36,9 +36,9 @@ public class Pidev3a52 {
             System.out.println(ex.getMessage());
         }*/
  ///////////////////////////////////
-      Reponse re     =  new Reponse("phone","broken","swwwww",2);
+      Reponse re     =  new Reponse("phone","broken","swwwww",8);
       ReponseService rs = new ReponseService();
-      //   rs.ajouter(re);
+        rs.ajouter(re);
          // rs.supprimer(15);
          // rs.modifier(re,2);
     /*  try { 
