@@ -29,8 +29,8 @@ public class secondwindow extends Application {
     public void start(Stage primaryStage) {
       Parent root;
         try {
-            root = FXMLLoader.load(getClass().getResource("Reponse.fxml"));
-            Scene scene = new Scene(root);
+            root = FXMLLoader.load(getClass().getResource("detailswindow2.fxml"));
+            Scene scene = new Scene(root,900,900);
              primaryStage.setTitle("Espace Reponse ");
         primaryStage.setScene(scene);
         primaryStage.show();

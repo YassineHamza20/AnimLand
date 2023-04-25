@@ -1,17 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="750.0" prefWidth="707.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.Detailswindow2Controller">
+<AnchorPane id="AnchorPane" prefHeight="750.0" prefWidth="955.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.Detailswindow2Controller">
    <children>
-      <TextField fx:id="tfobjetr" editable="false" layoutX="217.0" layoutY="135.0" />
-      <TextField fx:id="tfdescriptionr" editable="false" layoutX="197.0" layoutY="184.0" />
-      <TextField fx:id="tfnomr" editable="false" layoutX="217.0" layoutY="264.0" />
-      <TableView fx:id="tableview" layoutX="14.0" layoutY="24.0" prefHeight="577.0" prefWidth="492.0">
+      <TextField fx:id="tfobjetr" layoutX="695.0" layoutY="384.0" prefHeight="25.0" prefWidth="149.0" />
+      <TextField fx:id="tfdescriptionr" layoutX="698.0" layoutY="429.0" />
+      <TextField fx:id="tfnomr" layoutX="698.0" layoutY="471.0" />
+      <TableView fx:id="tableview" layoutX="14.0" layoutY="21.0" prefHeight="673.0" prefWidth="575.0">
         <columns>
           <TableColumn fx:id="idr" prefWidth="99.0" text="id" />
           <TableColumn fx:id="objetr" prefWidth="66.0" text="objet" />
@@ -20,8 +22,37 @@
             <TableColumn fx:id="rec_idr" prefWidth="133.0" text="reclamation_id" />
         </columns>
       </TableView>
-      <TextField fx:id="supid" layoutX="579.0" layoutY="184.0" prefHeight="31.0" prefWidth="114.0" />
-      <Button fx:id="supidbtn" layoutX="605.0" layoutY="120.0" mnemonicParsing="false" onAction="#delete" text="Delete" />
+      <TextField fx:id="supid" layoutX="704.0" layoutY="279.0" prefHeight="31.0" prefWidth="149.0" />
+      <Button fx:id="supidbtn" layoutX="736.0" layoutY="316.0" mnemonicParsing="false" onAction="#delete" style="-fx-background-color: blue;" text="Delete" textFill="WHITE" />
+      <TextField fx:id="tfobjetr1" layoutX="703.0" layoutY="54.0" prefHeight="25.0" prefWidth="149.0" />
+      <TextField fx:id="tfdescriptionr1" layoutX="704.0" layoutY="101.0" prefHeight="25.0" prefWidth="149.0" />
+      <TextField fx:id="tfnomr1" layoutX="704.0" layoutY="137.0" prefHeight="25.0" prefWidth="149.0" />
+      <Button layoutX="721.0" layoutY="509.0" mnemonicParsing="false" onAction="#ModifierReponse" style="-fx-background-color: blue;" text="modifier" textFill="WHITE" />
+      <Button layoutX="742.0" layoutY="208.0" mnemonicParsing="false" onAction="#savereponse" style="-fx-background-color: blue;" text="ajouter" textFill="WHITE" />
+      <TextField fx:id="tfrecidr1" layoutX="703.0" layoutY="176.0" prefHeight="25.0" prefWidth="149.0" />
+      <Label layoutX="620.0" layoutY="58.0" text="objet" />
+      <Label layoutX="620.0" layoutY="105.0" text="description" />
+      <Label layoutX="621.0" layoutY="375.0" text="objet" />
+      <Label layoutX="648.0" layoutY="286.0" text="id" />
+      <Label layoutX="737.0" layoutY="19.0" prefHeight="27.0" prefWidth="85.0" text="repondre">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <Label layoutX="612.0" layoutY="180.0" text="reclamation id" />
+      <Label layoutX="620.0" layoutY="141.0" text="nom" />
+      <Label layoutX="624.0" layoutY="475.0" text="nom" />
+      <Label layoutX="612.0" layoutY="433.0" text="dsecription" />
+      <Label layoutX="737.0" layoutY="245.0" text="supprimer">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="715.0" layoutY="349.0" text="modifier reponse">
+         <font>
+            <Font size="17.0" />
+         </font>
+      </Label>
       
    </children>
 </AnchorPane>

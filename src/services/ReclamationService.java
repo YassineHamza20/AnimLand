@@ -16,7 +16,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
 import utils.MyDB;
+import static utils.MyDB.instance;
 
 /**
  *
@@ -27,13 +29,19 @@ public class ReclamationService implements ICRUD <Reclamation> {
   private ResultSet rs;
     public Connection conx;
     public Statement stm;
-
+  private static ReclamationService instance;
     public ReclamationService() {
         conx = MyDB.getInstance().getConx();
 
     }
      
-
+    public static ReclamationService getInstance(){
+        if(instance==null) 
+            instance=new ReclamationService();
+        return instance;
+    }
+    
+    
     @Override
     public void ajouter(Reclamation p) {
         String req = "INSERT INTO `reclamation`(`objet`,`description`,`nom`) VALUES ('" + p.getObjet() + "','" + p.getDescription() + "','" + p.getNom()+"')";
@@ -118,4 +126,18 @@ public class ReclamationService implements ICRUD <Reclamation> {
         System.out.println("------> " + Reclamations.size());
         return Reclamations;
     }
+    
+    
+      public List<Reclamation> rechercher(String recherche) throws SQLException {
+    List<Reclamation> produits = afficherListe().stream()
+            .filter(x -> 
+                x.getObjet().contains(recherche) ||
+                x.getDescription().contains(recherche) ||
+                x.getNom().contains(recherche))
+            .collect(Collectors.toList());
+    return produits;       
+}
+    
+    
+    
 }

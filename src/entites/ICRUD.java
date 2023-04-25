@@ -15,6 +15,8 @@ import java.util.List;
 public interface ICRUD<T> {
     
     public void ajouter(T p);
+    public void modifier( Reclamation p,int id);
+ //   public void modifier( Reponse p,int id);
     public List<T> afficherListe() throws SQLException ;
     
 }
