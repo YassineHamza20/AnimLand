@@ -5,6 +5,8 @@
  */
 package Entites;
 
+import java.util.Base64;
+
 /**
  *
  * @author Sarra Kachouandi
@@ -12,6 +14,7 @@ package Entites;
 public class Produit{
     private int id;
     private String nom,photo;
+    
       private float Prix;
     private int categoriePId;
 
@@ -51,6 +54,20 @@ public class Produit{
         
     }
 
+    public Produit(String nom) {
+     this.nom = nom;
+    }
+
+    public Produit(String nom, float prix) {
+        this.nom = nom;
+        this.Prix = Prix;
+    }
+
+  public Produit(String nom, float prix, byte[] photo) {
+    this.nom = nom;
+    this.Prix = prix;
+    this.photo = Base64.getEncoder().encodeToString(photo);
+}
     
 
     public int getId() {
@@ -95,7 +112,7 @@ public class Produit{
 
     @Override
     public String toString() {
-        return "Produits{" + "id=" + id + ", nom=" + nom + ", photo=" + photo + ", Prix=" + Prix + ", categoriePId=" + categoriePId + '}';
+        return "Produits:"+ " " +"Nom:" + nom + " //Photo: " + photo + " //Prix: " + Prix + " //CategoriePId: " + categoriePId ;
     }
 
 }

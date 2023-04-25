@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Hyperlink?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
@@ -13,71 +15,102 @@
 
 <AnchorPane id="AnchorPane" prefHeight="689.0" prefWidth="1271.0" style="-fx-background-color: #F3F3F3;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.FXMLDocumentController">
     <children>
+      <ImageView fitHeight="701.0" fitWidth="1067.0" layoutX="204.0" layoutY="-9.0" nodeOrientation="RIGHT_TO_LEFT" pickOnBounds="true">
+         <image>
+            <Image url="file:/C:/Users/Sarra%20Kachouandi/Desktop/javapjoto/17973908.jpg" />
+         </image>
+      </ImageView>
         <Label fx:id="label" layoutX="126" layoutY="120" minHeight="16" minWidth="69" />
-      <TableView fx:id="table" layoutX="668.0" layoutY="208.0" prefHeight="352.0" prefWidth="580.0">
+      <TableView fx:id="table" layoutX="725.0" layoutY="223.0" prefHeight="281.0" prefWidth="509.0">
         <columns>
           <TableColumn fx:id="IDcolumn" prefWidth="49.0" text="ID" />
-          <TableColumn fx:id="nomcolumn" prefWidth="138.0" text="nom" />
-            <TableColumn fx:id="Photocolumn" prefWidth="146.0" text="photo" />
-            <TableColumn fx:id="categoriecolumn" prefWidth="125.0" text="CategoriePId" />
-            <TableColumn fx:id="Prixcolumn" prefWidth="100.0" text="prix" />
+          <TableColumn fx:id="nomcolumn" prefWidth="163.0" text="nom" />
+            <TableColumn fx:id="Photocolumn" prefWidth="121.0" text="photo" />
+            <TableColumn fx:id="categoriecolumn" prefWidth="76.0" text="CategoriePId" />
+            <TableColumn fx:id="Prixcolumn" prefWidth="99.0" text="prix" />
         </columns>
       </TableView>
-      <Button fx:id="btnModifier" layoutX="232.0" layoutY="596.0" mnemonicParsing="false" onAction="#ModifierProduit" prefHeight="31.0" prefWidth="116.0" style="-fx-background-color: #169013;" text="Modifier" textFill="WHITE" />
-      <Button fx:id="btnSuppr" layoutX="118.0" layoutY="636.0" mnemonicParsing="false" onAction="#SupprimerProduit" prefHeight="31.0" prefWidth="106.0" style="-fx-background-color: red;" text="Supprimer" textFill="#fffdfd" />
-      <TextField fx:id="ftprix" layoutX="361.0" layoutY="392.0" prefHeight="31.0" prefWidth="272.0" />
-      <Label layoutX="188.0" layoutY="303.0" prefHeight="23.0" prefWidth="148.0" text="Nom Produit:">
+      <Button fx:id="btnModifier" layoutX="364.0" layoutY="598.0" mnemonicParsing="false" onAction="#ModifierProduit" prefHeight="31.0" prefWidth="116.0" style="-fx-background-color: #169013;" text="Modifier" textFill="WHITE" />
+      <Button fx:id="btnSuppr" layoutX="242.0" layoutY="643.0" mnemonicParsing="false" onAction="#SupprimerProduit" prefHeight="31.0" prefWidth="106.0" style="-fx-background-color: red;" text="Supprimer" textFill="#fffdfd" />
+      <TextField fx:id="ftprix" layoutX="428.0" layoutY="395.0" prefHeight="31.0" prefWidth="272.0" />
+      <Label layoutX="243.0" layoutY="303.0" prefHeight="23.0" prefWidth="148.0" text="Nom Produit:">
          <font>
             <Font name="Serif Bold Italic" size="20.0" />
          </font></Label>
-      <Label layoutX="181.0" layoutY="355.0" prefHeight="23.0" prefWidth="163.0" text="Categorie Produit:">
+      <Label layoutX="236.0" layoutY="355.0" prefHeight="23.0" prefWidth="163.0" text="Categorie Produit:">
          <font>
             <Font name="Serif Bold Italic" size="20.0" />
          </font></Label>
-      <Label layoutX="182.0" layoutY="407.0" prefHeight="23.0" prefWidth="123.0" text="Prix Produit:">
+      <Label layoutX="237.0" layoutY="407.0" prefHeight="23.0" prefWidth="123.0" text="Prix Produit:">
          <font>
             <Font name="Serif Bold Italic" size="20.0" />
          </font></Label>
-      <ImageView fx:id="ImagePreview" fitHeight="132.0" fitWidth="169.0" layoutX="252.0" layoutY="450.0" pickOnBounds="true" preserveRatio="true" />
-      <Button fx:id="onBtnImageClicked" layoutX="372.0" layoutY="596.0" mnemonicParsing="false" onAction="#onBtnImageClicked" prefHeight="31.0" prefWidth="89.0" style="-fx-background-color: #3571C4;" text="Upload" textFill="WHITE" />
-      <Label layoutX="150.0" layoutY="564.0" text="Photo:">
+      <ImageView fx:id="ImagePreview" fitHeight="132.0" fitWidth="218.0" layoutX="422.0" layoutY="446.0" pickOnBounds="true" preserveRatio="true" />
+      <Button fx:id="onBtnImageClicked" layoutX="498.0" layoutY="598.0" mnemonicParsing="false" onAction="#onBtnImageClicked" prefHeight="31.0" prefWidth="89.0" style="-fx-background-color: #3571C4;" text="Upload" textFill="WHITE" />
+      <Label layoutX="276.0" layoutY="566.0" text="Photo:">
          <font>
             <Font name="Serif Italic" size="15.0" />
          </font></Label>
-      <Button fx:id="btAjout" layoutX="118.0" layoutY="596.0" mnemonicParsing="false" onAction="#AddProduit" prefHeight="31.0" prefWidth="106.0" style="-fx-background-color: #169013#169013;" text="Ajouter" textFill="#fcfcfc" />
+      <Button fx:id="btAjout" layoutX="244.0" layoutY="598.0" mnemonicParsing="false" onAction="#AddProduit" prefHeight="31.0" prefWidth="106.0" style="-fx-background-color: #169013#169013;" text="Ajouter" textFill="#fcfcfc" />
       <TextField fx:id="ftphoto" visible="false" />
-      <TextField fx:id="categorie" layoutX="361.0" layoutY="340.0" prefHeight="31.0" prefWidth="272.0" />
-      <TextField fx:id="ftnom" layoutX="361.0" layoutY="299.0" prefHeight="31.0" prefWidth="272.0" />
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="691.0" stroke="BLACK" strokeType="INSIDE" width="89.0" />
-      <ImageView fitHeight="72.0" fitWidth="69.0" layoutX="95.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
+      <TextField fx:id="categorie" layoutX="361.0" layoutY="340.0" prefHeight="31.0" prefWidth="272.0" visible="false" />
+      <TextField fx:id="ftnom" layoutX="428.0" layoutY="302.0" prefHeight="31.0" prefWidth="272.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#0f9af4" height="692.0" stroke="BLACK" strokeType="INSIDE" width="204.0" />
+      <ImageView fitHeight="49.0" fitWidth="55.0" layoutX="1194.0" layoutY="16.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="file:/C:/Users/Sarra%20Kachouandi/Desktop/javapjoto/logo.png" />
          </image>
       </ImageView>
-      <Label layoutX="170.0" layoutY="42.0" prefHeight="23.0" prefWidth="148.0" text="Animaland">
+      <Label layoutX="1090.0" layoutY="35.0" prefHeight="23.0" prefWidth="148.0" text="Animaland">
          <font>
             <Font name="Serif Bold" size="20.0" />
          </font>
       </Label>
-      <Label layoutX="1113.0" layoutY="41.0" text="Sarra kachouandi">
+      <Label layoutX="273.0" layoutY="41.0" text="Sarra kachouandi">
          <font>
             <Font name="Serif Italic" size="15.0" />
          </font>
       </Label>
-      <ImageView fitHeight="50.0" fitWidth="47.0" layoutX="1060.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="59.0" fitWidth="58.0" layoutX="211.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="file:/C:/Users/Sarra%20Kachouandi/Desktop/javapjoto/téléchargé.png" />
+            <Image url="file:/C:/Users/Sarra%20Kachouandi/Desktop/javapjoto/photoeffets.com_-modified.png" />
          </image>
       </ImageView>
-      <Label layoutX="170.0" layoutY="155.0" prefHeight="38.0" prefWidth="243.0" text="Gestion Produit:">
+      <Label layoutX="239.0" layoutY="178.0" prefHeight="38.0" prefWidth="243.0" text="Gestion Produit:" textFill="#514f4f">
          <font>
             <Font name="Serif Bold" size="33.0" />
          </font>
       </Label>
-      <Label layoutX="1113.0" layoutY="19.0" text="Admin">
+      <Label layoutX="274.0" layoutY="19.0" text="Admin">
          <font>
             <Font name="Serif Italic" size="15.0" />
          </font>
       </Label>
+      <Button fx:id="btnCat" layoutX="13.0" layoutY="598.0" mnemonicParsing="false" onAction="#afficheCat" style="-fx-background-color: #0f9af4;" text="ListeCategorie" textFill="WHITE" underline="true">
+         <font>
+            <Font name="Serif Bold" size="17.0" />
+         </font></Button>
+      <ComboBox fx:id="CatCombo" layoutX="428.0" layoutY="351.0" prefHeight="31.0" prefWidth="272.0" />
+      <Hyperlink fx:id="UserInterface" layoutX="19.0" layoutY="564.0" onAction="#affusrint" text="InterfaceUtilisateur" textFill="WHITE" underline="true">
+         <font>
+            <Font name="Serif Bold" size="17.0" />
+         </font>
+      </Hyperlink>
+      <TextField fx:id="searchField" layoutX="722.0" layoutY="178.0" prefHeight="31.0" prefWidth="516.0" promptText="Recherche" />
+      <Button fx:id="sortAscButton" layoutX="725.0" layoutY="512.0" mnemonicParsing="false" onAction="#handleSortAscButtonAction" prefHeight="31.0" prefWidth="138.0" style="-fx-background-color: #3571C4;" text="Tri Par Prix" textFill="WHITE" />
+      <Hyperlink fx:id="AfficherStat" layoutX="17.0" layoutY="635.0" onAction="#AfficherStat" text="Afficher Stats" textFill="WHITE" underline="true">
+         <font>
+            <Font name="Serif Bold" size="17.0" />
+         </font>
+      </Hyperlink>
+      <Button fx:id="btnimprim" layoutX="725.0" layoutY="551.0" mnemonicParsing="false" onAction="#ImprimerPdf" prefHeight="31.0" prefWidth="138.0" style="-fx-background-color: #3571C4;" text="Imprimer" textFill="WHITE" />
+      <Button fx:id="sortNom" layoutX="869.0" layoutY="512.0" mnemonicParsing="false" onAction="#SORTNOM" prefHeight="31.0" prefWidth="138.0" style="-fx-background-color: #3571C4;" text="Tri Par Nom" textFill="WHITE" />
+      <Label fx:id="weatherLabel" layoutX="270.0" layoutY="52.0" prefHeight="58.0" prefWidth="475.0" textFill="#545252">
+         <font>
+            <Font name="Serif Italic" size="15.0" />
+         </font>
+      </Label>
+      <Label fx:id="temperatureLabel" layoutX="531.0" layoutY="131.0" />
+      <Label fx:id="descriptionLabel" layoutX="720.0" layoutY="110.0" />
     </children>
 </AnchorPane>

@@ -17,5 +17,11 @@ public interface ICRUD<T> {
     public void ajouter(T p, String photo);
       public void modifier(Produit p,int id);
          public void supprimer(int id);
+         
+         
+         public void ajouterCategorie(T c);
+      public void modifierCategorie(T c,int id);
+        public void supprimerCategorie(int id);
+        public List<T> afficherListeCategorie() throws SQLException ;
    public List<T> afficherListe() throws SQLException ;
 }

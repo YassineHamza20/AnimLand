@@ -14,6 +14,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.scene.control.Alert;
 
 import utils.MYDB;
@@ -107,7 +109,46 @@ public class ServicesProduit implements ICRUD<Produit> {
     
     }
 
-  
+    @Override
+    public void ajouterCategorie(Produit c) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void modifierCategorie(Produit c, int id) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public List<Produit> afficherListeCategorie() throws SQLException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void supprimerCategorie(int id) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    
+public List<Produit> getAllNoms() throws SQLException {
+
+ String req = "SELECT * FROM `produit`";
+    stm = conx.createStatement();
+    ResultSet rs = stm.executeQuery(req);
+    List<Produit> produits = new ArrayList<Produit>();
+    while (rs.next()) {
+        
+        String nom = rs.getString("nom");
+ 
+        float prix = rs.getFloat("prix");
+         byte[] photo = rs.getBytes("photo");
+            Produit p = new Produit(nom, prix, photo);
+
+      
+        produits.add(p);
+    }
+    return produits;
+}
+    
 }
 
     

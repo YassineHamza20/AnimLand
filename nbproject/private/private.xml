@@ -3,12 +3,20 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/C:/javamobile/Produit/src/GUI/Affichage.fxml</file>
+            <file>file:/C:/javamobile/Produit/src/produit/Location.java</file>
+            <file>file:/C:/javamobile/Produit/src/Entites/CategorieP.java</file>
+            <file>file:/C:/javamobile/Produit/src/Services/ServicesProduit.java</file>
+            <file>file:/C:/javamobile/Produit/src/Services/ServiceCategorie.java</file>
+            <file>file:/C:/javamobile/Produit/src/Entites/Produit.java</file>
+            <file>file:/C:/javamobile/Produit/src/GUI/BarchartController.java</file>
             <file>file:/C:/javamobile/Produit/src/GUI/FXMLDocument.fxml</file>
-            <file>file:/C:/javamobile/Produit/src/Entites/Produits.java</file>
+            <file>file:/C:/javamobile/Produit/src/GUI/CategoriesController.java</file>
+            <file>file:/C:/javamobile/Produit/src/GUI/Categories.fxml</file>
             <file>file:/C:/javamobile/Produit/src/Entites/ICRUD.java</file>
             <file>file:/C:/javamobile/Produit/src/GUI/FXMLDocumentController.java</file>
             <file>file:/C:/javamobile/Produit/src/produit/Produit.java</file>
-            <file>file:/C:/javamobile/Produit/src/Services/SerevicesProduit.java</file>
+            <file>file:/C:/javamobile/Produit/src/GUI/AffichageController.java</file>
         </group>
     </open-files>
 </project-private>
