@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="958.0" prefWidth="1095.0" styleClass="main-background" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.SubscriptionController">
+   <children>
+      <VBox layoutX="154.0" layoutY="27.0" prefHeight="302.0" prefWidth="223.0" spacing="30.0" styleClass="main-background" stylesheets="@../../../../dash/Gaming%20Dashboard/src/gaming/dashboard/Stylesheet.css">
+         <children>
+            <Label fx:id="lbtype" prefHeight="18.0" prefWidth="69.0" text="offer names" textFill="WHITE" />
+            <ComboBox fx:id="offer_nami" prefHeight="26.0" prefWidth="233.0" />
+            <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="start_date" />
+            <DatePicker fx:id="start_date" prefHeight="26.0" prefWidth="231.0" />
+            <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="end_date" />
+            <DatePicker fx:id="end_date" prefHeight="26.0" prefWidth="223.0" />
+            <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="is_active" />
+            <TextField id="duration" fx:id="is_active" />
+            <Button id="add" fx:id="btnadd2" mnemonicParsing="false" onAction="#addNewSubscription" prefHeight="30.0" prefWidth="234.0" styleClass="windows7-default" stylesheets="@Stylesheet.css" text="Add new offer" />
+         </children>
+      </VBox>
+      <ImageView fitHeight="35.0" fitWidth="65.0" layoutX="959.0" layoutY="253.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/reload.png" />
+         </image>
+      </ImageView>
+      <AnchorPane layoutY="-3.0" prefHeight="964.0" prefWidth="92.0" styleClass="sidebar" stylesheets="@../../../../dash/Gaming%20Dashboard/src/gaming/dashboard/Stylesheet.css">
+         <children>
+            <ImageView fitHeight="52.0" fitWidth="92.0" layoutY="36.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/333683004_1229714674309065_4593574710209946262_n.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="38.0" fitWidth="32.0" layoutX="30.0" layoutY="310.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/icons8_clipboard_30px.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="38.0" fitWidth="32.0" layoutX="30.0" layoutY="156.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/icons8_brake_warning_32px.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="38.0" fitWidth="32.0" layoutX="30.0" layoutY="223.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/icons8_combo_chart_50px.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="38.0" fitWidth="32.0" layoutX="30.0" layoutY="307.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../dash/Gaming%20Dashboard/src/images/icons8_clipboard_30px.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="38.0" fitWidth="32.0" layoutX="30.0" layoutY="405.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/icons8_Box_32px(1).png" />
+               </image>
+            </ImageView>
+         </children>
+      </AnchorPane>
+      <TableView fx:id="tv2" layoutX="471.0" layoutY="53.0" prefHeight="200.0" prefWidth="402.0">
+         <columns>
+            <TableColumn fx:id="idd1" prefWidth="75.0" text="id" />
+            <TableColumn fx:id="offer_idd" prefWidth="76.00006103515625" text="offer_id" />
+            <TableColumn fx:id="start_datee" prefWidth="96.0" text="start_date" />
+            <TableColumn fx:id="end_datee" prefWidth="78.39996337890625" text="end_date" />
+            <TableColumn fx:id="is_activee" prefWidth="78.39996337890625" text="is_active" />
+         </columns>
+      </TableView>
+      <Button fx:id="deactivate" layoutX="471.0" layoutY="306.0" mnemonicParsing="false" onAction="#isntactive" styleClass="round-red" stylesheets="@Stylesheet.css" text="deactivate subscription" />
+      <Button fx:id="activate" layoutX="748.0" layoutY="306.0" mnemonicParsing="false" onAction="#isactive" styleClass="green" stylesheets="@Stylesheet.css" text="activate subscription" />
+   </children>
+   <effect>
+      <DropShadow color="#1b1eeb" />
+   </effect>
+   <stylesheets>
+      <URL value="@../../../../dash/Gaming%20Dashboard/src/gaming/dashboard/Stylesheet.css" />
+      <URL value="@Stylesheet.css" />
+   </stylesheets>
+</AnchorPane>

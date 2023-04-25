@@ -5,15 +5,22 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="750.0" prefWidth="955.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.Detailswindow2Controller">
+<AnchorPane id="AnchorPane" prefHeight="545.0" prefWidth="955.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.Detailswindow2Controller">
    <children>
+      <ImageView fitHeight="564.0" fitWidth="955.0" layoutX="-5.0" layoutY="-1.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="file:/C:/Users/sinoh/Downloads/311049080_869014931142994_2699170402553753362_n.jpg" />
+         </image>
+      </ImageView>
       <TextField fx:id="tfobjetr" layoutX="695.0" layoutY="384.0" prefHeight="25.0" prefWidth="149.0" />
       <TextField fx:id="tfdescriptionr" layoutX="698.0" layoutY="429.0" />
       <TextField fx:id="tfnomr" layoutX="698.0" layoutY="471.0" />
-      <TableView fx:id="tableview" layoutX="14.0" layoutY="21.0" prefHeight="673.0" prefWidth="575.0">
+      <TableView fx:id="tableview" layoutX="14.0" layoutY="63.0" prefHeight="479.0" prefWidth="545.0">
         <columns>
           <TableColumn fx:id="idr" prefWidth="99.0" text="id" />
           <TableColumn fx:id="objetr" prefWidth="66.0" text="objet" />
@@ -53,6 +60,19 @@
             <Font size="17.0" />
          </font>
       </Label>
+      <ImageView fitHeight="42.0" fitWidth="61.0" layoutX="14.0" layoutY="13.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="file:/C:/Users/sinoh/Downloads/324942701_698772861845336_5590842999845663888_n%20(1).png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="61.0" fitWidth="61.0" layoutX="869.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="file:/C:/Users/sinoh/Downloads/fb.jpg" />
+         </image>
+      </ImageView>
+      <Label layoutX="882.0" layoutY="79.0" text="Admin" />
+      <Label layoutX="865.0" layoutY="105.0" text="Yassine Hamza" />
+      <Label layoutX="70.0" layoutY="26.0" text="Animaland" />
       
    </children>
 </AnchorPane>

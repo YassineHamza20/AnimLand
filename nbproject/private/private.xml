@@ -5,16 +5,18 @@
         <group>
             <file>file:/C:/Users/sinoh/Desktop/projet%20java/Pidev3a52%20(1)/src/entites/Reclamation.java</file>
             <file>file:/C:/Users/sinoh/Desktop/projet%20java/Pidev3a52%20(1)/src/services/ReponseService.java</file>
-            <file>file:/C:/Users/sinoh/Desktop/projet%20java/Pidev3a52%20(1)/src/entites/ICRUD.java</file>
             <file>file:/C:/Users/sinoh/Desktop/projet%20java/Pidev3a52%20(1)/src/entites/Reponse.java</file>
             <file>file:/C:/Users/sinoh/Desktop/projet%20java/Pidev3a52%20(1)/src/services/ReclamationService.java</file>
+            <file>file:/C:/Users/sinoh/Desktop/projet%20java/Pidev3a52%20(1)/src/gui/msg.java</file>
+            <file>file:/C:/Users/sinoh/Desktop/projet%20java/Pidev3a52%20(1)/src/gui/DetailswindowController.java</file>
+            <file>file:/C:/Users/sinoh/Desktop/projet%20java/Pidev3a52%20(1)/src/gui/Detailswindow2Controller.java</file>
+            <file>file:/C:/Users/sinoh/Desktop/projet%20java/Pidev3a52%20(1)/src/entites/ICRUD.java</file>
+            <file>file:/C:/Users/sinoh/Desktop/projet%20java/Pidev3a52%20(1)/src/gui/mailutil.java</file>
             <file>file:/C:/Users/sinoh/Desktop/projet%20java/Pidev3a52%20(1)/src/utils/MyDB.java</file>
             <file>file:/C:/Users/sinoh/Desktop/projet%20java/Pidev3a52%20(1)/src/pidev3a52/Pidev3a52.java</file>
             <file>file:/C:/Users/sinoh/Desktop/projet%20java/Pidev3a52%20(1)/src/gui/secondwindow.java</file>
             <file>file:/C:/Users/sinoh/Desktop/projet%20java/Pidev3a52%20(1)/src/gui/ChartpieController.java</file>
-            <file>file:/C:/Users/sinoh/Desktop/projet%20java/Pidev3a52%20(1)/src/gui/DetailswindowController.java</file>
             <file>file:/C:/Users/sinoh/Desktop/projet%20java/Pidev3a52%20(1)/src/gui/FirstWindow.java</file>
-            <file>file:/C:/Users/sinoh/Desktop/projet%20java/Pidev3a52%20(1)/src/gui/Detailswindow2Controller.java</file>
         </group>
     </open-files>
 </project-private>

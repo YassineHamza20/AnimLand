@@ -12,10 +12,13 @@ import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
 import entites.Reclamation;
 import java.awt.event.MouseEvent;
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.List;
@@ -36,6 +39,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Hyperlink;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TableColumn;
@@ -48,6 +52,9 @@ import javafx.scene.text.FontWeight;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+import javax.mail.MessagingException;
+import org.json.JSONException;
+import org.json.JSONObject;
 import services.ReclamationService;
 import static sun.management.GcInfoCompositeData.getId;
  
@@ -98,14 +105,59 @@ public class DetailswindowController implements Initializable {
     private TextField supid;
    @FXML
     private TextField searchField;
+   
+    @FXML
+    private Label temperatureLabel;
+
+    @FXML
+    private Label descriptionLabel;
+   
     /**
      * Initializes the controller class.
      */
+   private static final String API_KEY = "cfa190dab15e570745236540e315d163"; 
+   private static final String API_URL = "https://api.openweathermap.org/data/2.5/weather?q=%s&appid=%s";
     @Override
-    public void initialize(URL url, ResourceBundle rb) {
+    public void initialize(URL location, ResourceBundle rb) {
+         String city = "Tunisia";
+    try {
+        URL url = new URL(String.format(API_URL, city, API_KEY));
+        HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+        conn.setRequestMethod("GET");
+        BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+        String inputLine;
+        StringBuffer response = new StringBuffer();
+        while ((inputLine = in.readLine()) != null) {
+            response.append(inputLine);
+        }
+        in.close();
+        JSONObject json = new JSONObject(response.toString());
+        double temperature = json.getJSONObject("main").getDouble("temp");
+        String description = json.getJSONArray("weather").getJSONObject(0).getString("description");
+        temperatureLabel.setText(String.format("%.2f°C", temperature - 273.15));
+        descriptionLabel.setText(description);
+    } catch (IOException | JSONException e) {
+        System.out.println("An error occurred while retrieving weather data: " + e.getMessage());
+    }
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
         try {
-            ReclamationService servicesProduit = new ReclamationService();
-            List<Reclamation> reclamations = servicesProduit.afficherListe();
+            ReclamationService reclamationService = new ReclamationService();
+            List<Reclamation> reclamations = reclamationService.afficherListe();
             ObservableList<Reclamation> observableProduits = FXCollections.observableArrayList(reclamations);
             tableview.setItems(observableProduits);
             
@@ -218,7 +270,7 @@ public class DetailswindowController implements Initializable {
        
        
     @FXML
-    private void savereclamation(ActionEvent event) {
+    private void savereclamation(ActionEvent event) throws MessagingException {
         String objet = tfobjet1.getText();
         String description = tfdescription1.getText();
         String nom = tfnom1.getText();
@@ -253,13 +305,16 @@ public class DetailswindowController implements Initializable {
         } catch (IOException ex) {
              System.out.println(" Error: "+ ex.getMessage());
         }
-    }}
+    }
+      msg.sendSMS("+21653322328"); 
+      mailutil.sendmail("yassine.hamza@esprit.tn");
+    }
        
        
        
        
        @FXML
-    private void  delete(ActionEvent event) {
+    private void  delete(ActionEvent event) throws MessagingException {
         int idsup = Integer.parseInt(supid.getText());
         ReclamationService rc = new ReclamationService();
         rc.supprimer(idsup);   
@@ -287,6 +342,7 @@ public class DetailswindowController implements Initializable {
     } catch (IOException ex) {
         ex.printStackTrace();
     }
+   
     }
     
     @FXML

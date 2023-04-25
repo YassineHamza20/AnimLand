@@ -6,16 +6,23 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" prefHeight="750.0" prefWidth="779.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.DetailswindowController">
+<AnchorPane id="AnchorPane" prefHeight="649.0" prefWidth="1135.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.DetailswindowController">
    <children>
-      <TextField fx:id="tfobjet1" layoutX="483.0" layoutY="72.0" />
-      <TextField fx:id="tfdescription1" layoutX="483.0" layoutY="100.0" />
-      <TextField fx:id="tfnom1" layoutX="483.0" layoutY="139.0" prefHeight="25.0" prefWidth="149.0" />
-      <TableView fx:id="tableview" layoutX="14.0" layoutY="4.0" prefHeight="690.0" prefWidth="404.0">
+      <ImageView fitHeight="654.0" fitWidth="1135.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="file:/C:/Users/sinoh/Downloads/311049080_869014931142994_2699170402553753362_n.jpg" />
+         </image>
+      </ImageView>
+      <TextField fx:id="tfobjet1" layoutX="828.0" layoutY="79.0" />
+      <TextField fx:id="tfdescription1" layoutX="828.0" layoutY="107.0" />
+      <TextField fx:id="tfnom1" layoutX="828.0" layoutY="146.0" prefHeight="31.0" prefWidth="149.0" />
+      <TableView fx:id="tableview" layoutX="106.0" layoutY="5.0" prefHeight="576.0" prefWidth="404.0">
         <columns>
           <TableColumn fx:id="id" prefWidth="99.0" text="id" />
           <TableColumn fx:id="objet" prefWidth="66.0" text="objet" />
@@ -23,35 +30,51 @@
             <TableColumn fx:id="nom" prefWidth="133.0" text="nom" />
         </columns>
       </TableView>
-      <Button fx:id="supidbtn" layoutX="526.0" layoutY="296.0" mnemonicParsing="false" onAction="#delete" style="-fx-background-color: blue;" text="Delete" textFill="WHITE" />
-      <TextField fx:id="supid" layoutX="481.0" layoutY="253.0" prefHeight="31.0" prefWidth="149.0" />
-      <Button layoutX="519.0" layoutY="475.0" mnemonicParsing="false" onAction="#ModifierReclamation" style="-fx-background-color: blue;" text="modifier" textFill="WHITE" />
-      <Text layoutX="443.0" layoutY="454.0" strokeType="OUTSIDE" strokeWidth="0.0" text="nom" />
-      <Text layoutX="427.0" layoutY="420.0" strokeType="OUTSIDE" strokeWidth="0.0" text="description" />
-      <Text layoutX="437.0" layoutY="387.0" strokeType="OUTSIDE" strokeWidth="0.0" text="objet" />
-      <Button fx:id="btnenvoyer" layoutX="494.0" layoutY="176.0" mnemonicParsing="false" onAction="#savereclamation" style="-fx-background-color: blue;" text="Envoyer Reclamation" textFill="WHITE" />
-      <TextField fx:id="tfobjet" layoutX="485.0" layoutY="370.0" />
-      <TextField fx:id="tfdescription" layoutX="489.0" layoutY="403.0" />
-      <TextField fx:id="tfnom" layoutX="485.0" layoutY="437.0" />
-      <Label layoutX="435.0" layoutY="76.0" text="objet" />
-      <Label layoutX="420.0" layoutY="104.0" text="desctiption" />
-      <Label layoutX="435.0" layoutY="143.0" text="nom" />
-      <Label layoutX="438.0" layoutY="260.0" text="id" />
-      <Label layoutX="516.0" layoutY="335.0" text="Modifier">
+      <Button fx:id="supidbtn" layoutX="871.0" layoutY="303.0" mnemonicParsing="false" onAction="#delete" style="-fx-background-color: blue;" text="Delete" textFill="WHITE" />
+      <TextField fx:id="supid" layoutX="826.0" layoutY="260.0" prefHeight="31.0" prefWidth="149.0" />
+      <Button layoutX="864.0" layoutY="482.0" mnemonicParsing="false" onAction="#ModifierReclamation" style="-fx-background-color: blue;" text="modifier" textFill="WHITE" />
+      <Text layoutX="788.0" layoutY="461.0" strokeType="OUTSIDE" strokeWidth="0.0" text="nom" />
+      <Text layoutX="772.0" layoutY="427.0" strokeType="OUTSIDE" strokeWidth="0.0" text="description" />
+      <Text layoutX="782.0" layoutY="394.0" strokeType="OUTSIDE" strokeWidth="0.0" text="objet" />
+      <Button fx:id="btnenvoyer" layoutX="839.0" layoutY="183.0" mnemonicParsing="false" onAction="#savereclamation" style="-fx-background-color: blue;" text="Envoyer Reclamation" textFill="WHITE" />
+      <TextField fx:id="tfobjet" layoutX="830.0" layoutY="377.0" />
+      <TextField fx:id="tfdescription" layoutX="834.0" layoutY="410.0" />
+      <TextField fx:id="tfnom" layoutX="830.0" layoutY="444.0" />
+      <Label layoutX="763.0" layoutY="84.0" text="objet" />
+      <Label layoutX="746.0" layoutY="112.0" text="desctiption" />
+      <Label layoutX="780.0" layoutY="150.0" text="nom" />
+      <Label layoutX="783.0" layoutY="267.0" text="id" />
+      <Label layoutX="861.0" layoutY="342.0" text="Modifier">
          <font>
             <Font size="19.0" />
          </font></Label>
-      <Label layoutX="494.0" layoutY="33.0" prefHeight="25.0" prefWidth="149.0" text="Ajoute reclamation">
+      <Label layoutX="839.0" layoutY="40.0" prefHeight="25.0" prefWidth="149.0" text="Ajoute reclamation">
          <font>
             <Font size="16.0" />
          </font></Label>
-      <Label layoutX="514.0" layoutY="218.0" text="Supprimer">
+      <Label layoutX="859.0" layoutY="225.0" text="Supprimer">
          <font>
             <Font size="18.0" />
          </font></Label>
-      <TextField fx:id="searchField" layoutX="467.0" layoutY="569.0" />
-      <Hyperlink fx:id="affichbarchart" layoutX="434.0" layoutY="694.0" onAction="#affichbarchart" text="statistique" />
-      <Hyperlink fx:id="reponse" layoutX="577.0" layoutY="634.0" onAction="#reponse" text="reponse" />
-      <Button layoutX="449.0" layoutY="634.0" mnemonicParsing="false" onAction="#generatePdf" text="printPDF" />
+      <TextField fx:id="searchField" layoutX="522.0" layoutY="223.0" prefHeight="31.0" prefWidth="117.0" />
+      <Hyperlink fx:id="affichbarchart" layoutX="518.0" layoutY="292.0" onAction="#affichbarchart" text="statistique" textFill="RED" />
+      <Hyperlink fx:id="reponse" layoutX="514.0" layoutY="366.0" onAction="#reponse" text="les Reponse" textFill="#f80505" />
+      <Button layoutX="518.0" layoutY="263.0" mnemonicParsing="false" onAction="#generatePdf" text="printPDF" />
+      <Label layoutX="524.0" layoutY="200.0" text="recherche" />
+      <ImageView fitHeight="47.0" fitWidth="49.0" layoutX="14.0" layoutY="16.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="file:/C:/Users/sinoh/Downloads/324942701_698772861845336_5590842999845663888_n%20(1).png" />
+         </image>
+      </ImageView>
+      <Label layoutX="7.0" layoutY="69.0" prefHeight="47.0" prefWidth="99.0" text="AnimaLand" textFill="#da0a0a" />
+      <ImageView fitHeight="65.0" fitWidth="63.0" layoutX="1047.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="file:/C:/Users/sinoh/Downloads/fb.jpg" />
+         </image>
+      </ImageView>
+      <Label layoutX="1060.0" layoutY="80.0" text="Admin" />
+      <Label layoutX="1045.0" layoutY="108.0" text="Yassine Hamza" />
+      <Label fx:id="temperatureLabel" layoutX="549.0" layoutY="30.0" prefHeight="21.0" prefWidth="124.0" />
+      <Label fx:id="descriptionLabel" layoutX="531.0" layoutY="65.0" prefHeight="31.0" prefWidth="159.0" />
    </children>
 </AnchorPane>

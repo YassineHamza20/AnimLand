@@ -65,7 +65,7 @@ public class FirstWindow extends Application {
       Parent root;
         try {
             root = FXMLLoader.load(getClass().getResource("detailswindow.fxml"));
-            Scene scene = new Scene(root,700,700);
+            Scene scene = new Scene(root);
              primaryStage.setTitle("Espace Reclamation ");
         primaryStage.setScene(scene);
         primaryStage.show();

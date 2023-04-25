@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="958.0" prefWidth="1095.0" styleClass="main-background" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.OfferController">
+   <children>
+      <VBox layoutX="154.0" layoutY="27.0" prefHeight="782.0" prefWidth="223.0" spacing="30.0" styleClass="main-background" stylesheets="@../../../../dash/Gaming%20Dashboard/src/gaming/dashboard/Stylesheet.css">
+         <children>
+            <Label fx:id="lbtype" prefHeight="18.0" prefWidth="46.0" text="Name" textFill="WHITE" />
+            <TextField fx:id="name" />
+            <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Description" />
+            <TextField id="description" fx:id="description" />
+            <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Price" />
+            <TextField id="price" fx:id="price" />
+            <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Duration" />
+            <TextField id="duration" fx:id="duration" />
+            <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Payment_link" />
+            <TextField id="payment_link" fx:id="payment_link" />
+            <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="offer_key" />
+            <TextField id="offer_key" fx:id="offer_key" />
+            <Button id="add" fx:id="btnadd2" mnemonicParsing="false" onAction="#addNewOffer" prefHeight="30.0" prefWidth="234.0" stylesheets="@style.css" text="Add new offer" />
+            <Button id="add" fx:id="btnupdate" mnemonicParsing="false" onAction="#updateOffer" prefHeight="30.0" prefWidth="230.0" stylesheets="@style.css" text="Update existing offer" />
+            <Button id="add" fx:id="btndelete" mnemonicParsing="false" onAction="#deleteOffer" prefHeight="30.0" prefWidth="237.0" stylesheets="@style.css" text="Delete selected offer" />
+         </children>
+      </VBox>
+      <ImageView fitHeight="35.0" fitWidth="65.0" layoutX="959.0" layoutY="253.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/reload.png" />
+         </image>
+      </ImageView>
+      <AnchorPane layoutY="-3.0" prefHeight="964.0" prefWidth="92.0" styleClass="sidebar" stylesheets="@../../../../dash/Gaming%20Dashboard/src/gaming/dashboard/Stylesheet.css">
+         <children>
+            <ImageView fitHeight="52.0" fitWidth="92.0" layoutY="36.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/333683004_1229714674309065_4593574710209946262_n.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="38.0" fitWidth="32.0" layoutX="30.0" layoutY="310.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/icons8_clipboard_30px.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="38.0" fitWidth="32.0" layoutX="30.0" layoutY="156.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/icons8_brake_warning_32px.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="38.0" fitWidth="32.0" layoutX="30.0" layoutY="223.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/icons8_combo_chart_50px.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="38.0" fitWidth="32.0" layoutX="30.0" layoutY="307.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../dash/Gaming%20Dashboard/src/images/icons8_clipboard_30px.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="38.0" fitWidth="32.0" layoutX="30.0" layoutY="405.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/icons8_Box_32px(1).png" />
+               </image>
+            </ImageView>
+         </children>
+      </AnchorPane>
+      <TableView fx:id="tv1" layoutX="435.0" layoutY="188.0" prefHeight="200.0" prefWidth="625.0">
+         <columns>
+            <TableColumn fx:id="idd" prefWidth="75.0" text="id" />
+            <TableColumn fx:id="namee" prefWidth="76.00006103515625" text="name" />
+            <TableColumn fx:id="descriptionn" prefWidth="96.0" text="Description" />
+            <TableColumn fx:id="pricee" prefWidth="78.39996337890625" text="Price" />
+            <TableColumn fx:id="durationn" prefWidth="78.39996337890625" text="Duration" />
+            <TableColumn fx:id="payment_linkk" prefWidth="130.4000244140625" text="Payment_link" />
+            <TableColumn fx:id="offer_keyy" prefWidth="80.79998779296875" text="Offer_key" />
+         </columns>
+      </TableView>
+      <TextField fx:id="searchi" layoutX="644.0" layoutY="128.0" onAction="#searchyabro" />
+      <ImageView fitHeight="26.0" fitWidth="46.0" layoutX="600.0" layoutY="128.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/icons8_search_50px.png" />
+         </image>
+      </ImageView>
+   </children>
+   <effect>
+      <DropShadow color="#1b1eeb" />
+   </effect>
+   <stylesheets>
+      <URL value="@../../../../dash/Gaming%20Dashboard/src/gaming/dashboard/Stylesheet.css" />
+      <URL value="@Stylesheet.css" />
+   </stylesheets>
+</AnchorPane>
