@@ -50,7 +50,8 @@
             <Font size="18.0" />
          </font></Label>
       <TextField fx:id="searchField" layoutX="467.0" layoutY="569.0" />
-      <Hyperlink fx:id="affichbarchart" layoutX="458.0" layoutY="648.0" onAction="#affichbarchart" text="statistique" />
+      <Hyperlink fx:id="affichbarchart" layoutX="434.0" layoutY="694.0" onAction="#affichbarchart" text="statistique" />
       <Hyperlink fx:id="reponse" layoutX="577.0" layoutY="634.0" onAction="#reponse" text="reponse" />
+      <Button layoutX="449.0" layoutY="634.0" mnemonicParsing="false" onAction="#generatePdf" text="printPDF" />
    </children>
 </AnchorPane>

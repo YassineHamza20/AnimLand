@@ -5,8 +5,16 @@
  */
 package gui;
 
+import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.Phrase;
+import com.itextpdf.text.pdf.PdfPCell;
+import com.itextpdf.text.pdf.PdfPTable;
+import com.itextpdf.text.pdf.PdfWriter;
 import entites.Reclamation;
 import java.awt.event.MouseEvent;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
@@ -37,6 +45,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import services.ReclamationService;
@@ -351,6 +360,50 @@ try {
         e.printStackTrace();
     }
     }
+    
+    
+    /*---------------------------PDF STAT ----------------------*/
+    @FXML
+    private void generatePdf() throws FileNotFoundException, DocumentException {
+    FileChooser fileChooser = new FileChooser();
+    fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("PDF Files", "Reclamation.pdf"));
+    File selectedFile = fileChooser.showSaveDialog(null);
+    if (selectedFile != null) {
+        // create a new PDF document
+        com.itextpdf.text.Document document = new com.itextpdf.text.Document();
+        PdfWriter.getInstance(document, new FileOutputStream(selectedFile));
+
+        document.open();
+
+        PdfPTable table = new PdfPTable(4);
+
+        PdfPCell objetCell = new PdfPCell(new Phrase("objet"));
+        PdfPCell descriptionCell = new PdfPCell(new Phrase("description"));
+        PdfPCell nomCell = new PdfPCell(new Phrase("nom"));
+
+
+        table.addCell(objetCell);
+        table.addCell(descriptionCell);
+        table.addCell(nomCell);
+   
+
+        for (Reclamation reclamation : tableview.getItems()) {
+             table.addCell(reclamation.getDescription());
+              table.addCell(reclamation.getObjet());
+            table.addCell(reclamation.getNom());
+              
+        }
+
+        document.add(table);
+        document.close();
+
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("PDF Export");
+        alert.setHeaderText("Export successful");
+        alert.setContentText("The PRODUCT has been exported to PDF successfully.");
+        alert.showAndWait();
+    }
+}
 }
   
     
