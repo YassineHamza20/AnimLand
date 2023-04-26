@@ -18,6 +18,10 @@ import servicespi.utils.SingleToneConnection;
 
 public class ServiceController implements ServiceInterface {
 
+    public static void updateEvent(Service service) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
     private List<Service> list;
     Connection connection = SingleToneConnection.getConnection();
 
@@ -73,13 +77,14 @@ public class ServiceController implements ServiceInterface {
     @Override
     public void updateService(Service associationCategory) {
         try {
-            PreparedStatement ps = connection.prepareStatement("UPDATE service_v SET prix = ?,nom = ?,description = ?,date = ?,category_id = ? WHERE id = ?");
+            PreparedStatement ps = connection.prepareStatement("UPDATE service_v SET prix = ?,nom = ?,description = ?,date = ?,view_count = ?,category_id = ? WHERE id = ?");
            ps.setDouble(1, associationCategory.getPrix());
              ps.setString(2, associationCategory.getNom());
               ps.setString(3, associationCategory.getDescription());
                ps.setString(4, associationCategory.getDate());
-               ps.setInt(5, associationCategory.getCategory());
-               ps.setInt(6, associationCategory.getId());
+               ps.setInt(5, associationCategory.getViewCount());
+               ps.setInt(6, associationCategory.getCategory());
+               ps.setInt(7, associationCategory.getId());
             ps.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -96,4 +101,59 @@ public class ServiceController implements ServiceInterface {
             e.printStackTrace();
         }
     }
+    
+     public List<Service> Search() {
+       
+        List<Service> Service = new ArrayList<>();
+
+        try {
+            String sql = "SELECT * FROM service_v ";
+            ResultSet rs;
+            PreparedStatement ste;
+            ste = connection.prepareStatement(sql);
+            rs = ste.executeQuery();
+            while (rs.next()) {
+                Service S = new Service();
+                S.setId(rs.getInt("id"));
+                S.setPrix(rs.getDouble("Prix"));
+                S.setNom(rs.getString("nom"));
+                S.setDescription(rs.getString("description"));
+                S.setDate(rs.getString("date")); 
+                S.setCategory(rs.getInt("category_id")); 
+                Service.add(S);
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+
+        }
+        System.out.println("------> " + Service.size());
+        return Service;
+    } 
+      @Override
+       public List<Service> search(String keyword) {
+        List<Service> list = new ArrayList<>();
+        try {
+            PreparedStatement ps = connection.prepareStatement(
+                    "SELECT * FROM service_v WHERE nom LIKE ? OR description LIKE ?");
+            String likeKeyword = "%" + keyword + "%";
+            ps.setString(1, likeKeyword);
+            ps.setString(2, likeKeyword);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+    
+                Service S = new Service();
+                S.setId(rs.getInt("id"));
+                S.setPrix(rs.getDouble("Prix"));
+                S.setNom(rs.getString("nom"));
+                S.setDescription(rs.getString("description"));
+                S.setDate(rs.getString("date")); 
+                S.setCategory(rs.getInt("category_id")); 
+                list.add(S);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
+
 }

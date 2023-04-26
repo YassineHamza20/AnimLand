@@ -87,4 +87,29 @@ public class CategoryController implements CategoryInterface {
             e.printStackTrace();
         }
     }
+    public List<Category> Search() {
+       
+        List<Category> Category = new ArrayList<>();
+
+        try {
+            String sql = "SELECT * FROM categorie_v ";
+            ResultSet rs;
+            PreparedStatement ste;
+            ste = connection.prepareStatement(sql);
+            rs = ste.executeQuery();
+            while (rs.next()) {
+                Category p = new Category();
+                p.setId(rs.getInt("id"));
+                p.setType(rs.getString("type"));
+                Category.add(p);
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+
+        }
+        System.out.println("------> " + Category.size());
+        return Category;
+    } 
+    
+    
 }

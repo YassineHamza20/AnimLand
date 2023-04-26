@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<jnlp spec="1.0" xmlns:jfx="http://javafx.com" href="ServicesPI.jnlp">
+  <information>
+    <title>ServicesPI</title>
+    <vendor>Mynet</vendor>
+    <description>null</description>
+    <offline-allowed/>
+  </information>
+  <resources>
+    <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
+    <jar href="ServicesPI.jar" size="30272" download="eager" />
+    <jar href="lib\commons-logging-1.2.jar" size="61829" download="eager" />
+    <jar href="lib\fontbox-2.0.28.jar" size="1567583" download="eager" />
+    <jar href="lib\mysql-connector-j-8.0.33.jar" size="2481560" download="eager" />
+    <jar href="lib\mysql-connector-java-5.1.23-bin.jar" size="834126" download="eager" />
+    <jar href="lib\mysql-connector-java-5.1.23.jar" size="843090" download="eager" />
+    <jar href="lib\pdfbox-2.0.28.jar" size="2777916" download="eager" />
+  </resources>
+  <applet-desc  width="800" height="600" main-class="com.javafx.main.NoJavaFXFallback"  name="ServicesPI" >
+    <param name="requiredFXVersion" value="8.0+"/>
+  </applet-desc>
+  <jfx:javafx-desc  width="800" height="600" main-class="servicespi.ServicesPI"  name="ServicesPI" />
+  <update check="always"/>
+</jnlp>

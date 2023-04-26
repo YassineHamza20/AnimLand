@@ -18,6 +18,7 @@ public class Service {
     private String date;
     private int category;
     private int viewCount;
+    private int likes;
   
  public Service(){      
 }
@@ -30,6 +31,7 @@ public class Service {
      this.date=date;
      this.category=category;  
      this.viewCount=viewCount;
+     this.likes = likes;
 }
 public Service(double prix,String nom,String description,String date,int category,int viewCount){ 
  
@@ -39,6 +41,7 @@ public Service(double prix,String nom,String description,String date,int categor
      this.date=date;
      this.category=category;  
      this.viewCount=viewCount;
+     this.likes = likes;
 }
 public Service(double prix,String nom,String description,String date,int category){ 
  
@@ -77,6 +80,9 @@ public Service(double prix,String nom,String description,String date,int categor
     public int getId() {
         return id;
     }
+    public int getLikes() {
+        return likes;
+    }
 
     public void setViewCount(int viewCount) {
         this.viewCount = viewCount;
@@ -104,6 +110,9 @@ public Service(double prix,String nom,String description,String date,int categor
 
     public void setCategory(int category) {
         this.category = category;
+    }
+    public void setLikes(int likes) {
+        this.likes = likes;
     }
 
 }

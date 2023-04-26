@@ -5,6 +5,7 @@
  */
 package servicespi.gui;
 
+import java.awt.AWTException;
 import java.io.IOException;
 import java.util.List;
 import javafx.beans.property.SimpleDoubleProperty;
@@ -12,6 +13,7 @@ import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -23,6 +25,10 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import javafx.util.Callback;
+import org.apache.pdfbox.pdmodel.PDDocument;
+import org.apache.pdfbox.pdmodel.PDPage;
+import org.apache.pdfbox.pdmodel.PDPageContentStream;
+import org.apache.pdfbox.pdmodel.font.PDType1Font;
 import servicespi.ServicesPI;
 
 import servicespi.controller.CategoryController;
@@ -30,6 +36,7 @@ import servicespi.controller.ServiceController;
 
 import servicespi.entities.Category;
 import servicespi.entities.Service;
+
 
 /**
  *
@@ -67,6 +74,13 @@ public class MainGui {
     @FXML private TextField categoryEdit;
     @FXML private Button updateList;
     @FXML private Button addService;
+    @FXML private Button exportPdf;
+    @FXML private TextField searchInput;
+    @FXML private Button search;
+    @FXML private Button rating;
+    @FXML private Button like;
+    @FXML private Button dislike;
+    
     
     
     
@@ -206,6 +220,11 @@ public class MainGui {
         dateEdit.setText(idCaptured.getDate());
         descEdit.setText(idCaptured.getDescription());
         categoryEdit.setText(String.valueOf(idCaptured.getCategory()));
+        Service updatedService =new Service(idCaptured.getId(),idCaptured.getPrix(),idCaptured.getNom(),idCaptured.getDescription(),idCaptured.getDate(),idCaptured.getCategory(),idCaptured.getViewCount()+1);
+        serviceController.updateService(updatedService);
+        initServices();
+        servicesTableView.refresh();
+        servicesTableView.getSelectionModel().select(idCaptured);
     }
     @FXML private void updateServiceThatIsChanged(ActionEvent event) {
         Service idCaptured = servicesTableView.getSelectionModel().getSelectedItem();
@@ -229,7 +248,104 @@ public class MainGui {
         stage.setScene(scene);
         stage.showAndWait();
     }
-    
+    @FXML private void doSearch(ActionEvent event) {
+        if (searchInput.getText().isEmpty()) {
+            initServices();
+            return;
+        }
+        String search = searchInput.getText();
+        List<Service> services = serviceController.search(search);
+        servicesTableView.getItems().clear(); // Clear the current items in the table view
+        servicesTableView.setItems(FXCollections.observableList(services));
+        servicesTableView.refresh();
+        System.out.println(services);
 }
+    
+    @FXML private void exportPdf(ActionEvent event) throws IOException, AWTException {
+        Service selectedReservation = servicesTableView.getSelectionModel().getSelectedItem();
 
-/** bhokem scene builder mahouch integre fel netbeans besh nkamlou lkol w mba3ed nzidou el edit! */
+        PDDocument document = new PDDocument();
+        PDPage page = new PDPage();
+        document.addPage(page);
+
+        PDPageContentStream contentStream = new PDPageContentStream(document, page);
+        contentStream.setFont(PDType1Font.HELVETICA_BOLD, 12);
+        contentStream.beginText();
+        contentStream.newLineAtOffset(50, 700);
+
+        Service eventById = serviceController.getServiceById(selectedReservation.getId());
+        String nom = eventById.getNom();
+        String date = eventById.getDate();
+        String description = eventById.getDescription();
+        double prix = eventById.getPrix();
+      
+        double totalPrice;
+
+            String text = "Hello " + nom + "! " +
+                    "Votre Service " + description + " disponible " +
+                    "il cout " + prix + " commence le " + date ;
+             
+
+            contentStream.showText(text);
+
+        contentStream.endText();
+        contentStream.close();
+
+        String fileName = "pdf/" + selectedReservation.getId() + "_" + nom + ".pdf";
+        document.save(fileName);
+        document.close();
+        new SERVICES().showNotif("Document Created", "Check your pdf folder for the document");
+    }
+    
+    @FXML private void onRating(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(ServicesPI.class.getResource("addRating.fxml"));
+        Parent root = loader.load();
+        Scene scene = new Scene(root);
+        Stage stage = new Stage();
+        stage.setScene(scene);
+        stage.showAndWait();
+    }
+    
+    @FXML private void onLike(ActionEvent event) throws AWTException {
+        Service idCaptured = servicesTableView.getSelectionModel().getSelectedItem();
+        
+        serviceController.updateService(new servicespi.gui(
+                idCaptured.getId(),
+                idCaptured.getPrix(),
+                idCaptured.getNom(),
+                idCaptured.getDate(),
+                idCaptured.getDescription(),
+                idCaptured.getCategory(),
+                idCaptured.getViewCount(),
+                idCaptured.getLikes() + 1
+        ));
+        initServices();
+        servicesTableView.refresh();
+        servicesTableView.getSelectionModel().select(idCaptured);
+        new SERVICES().showNotif("You Liked This service", "Service has been Liked");
+    }
+    /*@FXML private void onDislike(ActionEvent event) throws AWTException {
+        Service idCaptured = servicesTableView.getSelectionModel().getSelectedItem();
+
+        if (idCaptured.getLikes() == 0) {
+            return;
+        }
+
+        serviceController.updateService(new Service(
+                idCaptured.getId(),
+                idCaptured.getPrix(),
+                idCaptured.getNom(),
+                idCaptured.getDate(),
+                idCaptured.getDescription(),
+                idCaptured.getCategory(),
+                idCaptured.getViewCount(),
+                idCaptured.getLikes() + 1
+           
+        ));
+        initServices();
+        servicesTableView.refresh();
+        servicesTableView.getSelectionModel().select(idCaptured);
+        new SERVICES().showNotif("You DisLiked This Event", "Event has been DisLiked");
+    }*/
+    }
+   

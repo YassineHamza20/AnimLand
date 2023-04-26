@@ -18,4 +18,7 @@ public interface ServiceInterface {
    public void deleteService(Integer id);
    public List<Service> getAllServices();
    public Service getServiceById(Integer id); //override/polymorphism
+   public List<Service> search(String keyword);
 }
+
+

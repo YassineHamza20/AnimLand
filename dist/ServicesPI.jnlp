@@ -8,8 +8,13 @@
   </information>
   <resources>
     <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
-    <jar href="ServicesPI.jar" size="26181" download="eager" />
+    <jar href="ServicesPI.jar" size="37595" download="eager" />
+    <jar href="lib\commons-logging-1.2.jar" size="61829" download="eager" />
+    <jar href="lib\fontbox-2.0.28.jar" size="1567583" download="eager" />
+    <jar href="lib\mysql-connector-j-8.0.33.jar" size="2481560" download="eager" />
     <jar href="lib\mysql-connector-java-5.1.23-bin.jar" size="834126" download="eager" />
+    <jar href="lib\mysql-connector-java-5.1.23.jar" size="843090" download="eager" />
+    <jar href="lib\pdfbox-2.0.28.jar" size="2777916" download="eager" />
   </resources>
   <applet-desc  width="800" height="600" main-class="com.javafx.main.NoJavaFXFallback"  name="ServicesPI" >
     <param name="requiredFXVersion" value="8.0+"/>
