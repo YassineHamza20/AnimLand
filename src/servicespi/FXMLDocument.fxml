@@ -148,7 +148,7 @@
                         <Button fx:id="search" layoutX="222.0" layoutY="516.0" maxHeight="1.7976931348623157E308" mnemonicParsing="false" onAction="#doSearch" text="Search" />
                         <TextField fx:id="searchInput" layoutX="27.0" layoutY="516.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" promptText="search" />
                         <Button fx:id="rating" defaultButton="true" layoutX="515.0" layoutY="506.0" mnemonicParsing="false" onAction="#onRating" text="Rating" />
-                        <Button fx:id="dislike" layoutX="442.0" layoutY="506.0" mnemonicParsing="false" text="Dislike" textFill="#dd2424" />
+                        <Button fx:id="dislike" layoutX="442.0" layoutY="506.0" mnemonicParsing="false" onAction="#onDislike" text="Dislike" textFill="#dd2424" />
                         <Button fx:id="like" layoutX="387.0" layoutY="506.0" mnemonicParsing="false" onAction="#onLike" text="Like" textFill="#372ee1" />
                      </children></AnchorPane>
             </content>

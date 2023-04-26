@@ -309,7 +309,7 @@ public class MainGui {
     @FXML private void onLike(ActionEvent event) throws AWTException {
         Service idCaptured = servicesTableView.getSelectionModel().getSelectedItem();
         
-        serviceController.updateService(new servicespi.gui(
+        serviceController.getAllServices(new Services(
                 idCaptured.getId(),
                 idCaptured.getPrix(),
                 idCaptured.getNom(),

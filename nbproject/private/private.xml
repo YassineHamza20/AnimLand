@@ -5,10 +5,12 @@
         <group>
             <file>file:/C:/Users/Mynet/Documents/NetBeansProjects/ServicesPI/src/servicespi/gui/MainGui.java</file>
             <file>file:/C:/Users/Mynet/Documents/NetBeansProjects/ServicesPI/src/servicespi/gui/AddCategoryGui.java</file>
-            <file>file:/C:/Users/Mynet/Documents/NetBeansProjects/ServicesPI/src/servicespi/entities/Service.java</file>
+            <file>file:/C:/Users/Mynet/Documents/NetBeansProjects/ServicesPI/src/servicespi/gui/AddRating.java</file>
+            <file>file:/C:/Users/Mynet/Documents/NetBeansProjects/ServicesPI/src/servicespi/interfaces/IRating.java</file>
             <file>file:/C:/Users/Mynet/Documents/NetBeansProjects/ServicesPI/src/servicespi/controller/ServiceController.java</file>
+            <file>file:/C:/Users/Mynet/Documents/NetBeansProjects/ServicesPI/src/servicespi/controller/RatingController.java</file>
             <file>file:/C:/Users/Mynet/Documents/NetBeansProjects/ServicesPI/src/servicespi/gui/AddService.java</file>
-            <file>file:/C:/Users/Mynet/Documents/NetBeansProjects/ServicesPI/src/servicespi/controller/CategoryController.java</file>
+            <file>file:/C:/Users/Mynet/Documents/NetBeansProjects/ServicesPI/src/servicespi/interfaces/ServiceInterface.java</file>
         </group>
     </open-files>
 </project-private>
