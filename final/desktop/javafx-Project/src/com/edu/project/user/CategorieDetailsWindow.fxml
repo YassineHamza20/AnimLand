@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" prefHeight="596.0" prefWidth="815.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.CategorieDetailsWindowController">
+   <children>
+      <TableView fx:id="tableview" layoutX="371.0" layoutY="127.0" prefHeight="391.0" prefWidth="392.0">
+        <columns>
+          <TableColumn fx:id="idc" prefWidth="75.0" text="id" />
+          <TableColumn fx:id="catc" prefWidth="124.0" text="Categorie" />
+        </columns>
+      </TableView>
+      <Label layoutX="37.0" layoutY="127.0" text="ID:" />
+      <Label layoutX="12.0" layoutY="176.0" text="Categorie:" />
+      <TextField fx:id="tfid" layoutX="87.0" layoutY="122.0" />
+      <TextField fx:id="tfcat" layoutX="87.0" layoutY="171.0" />
+      <Button fx:id="btnsup" layoutX="37.0" layoutY="298.0" mnemonicParsing="false" onAction="#SupprimerCategorie" text="Supprimer par id:" />
+      <TextField fx:id="tfidsup" layoutX="172.0" layoutY="298.0" promptText="enter un id" />
+      <TextField editable="false" layoutX="278.0" layoutY="52.0" text="CRUD Categorie" />
+   </children>
+</AnchorPane>

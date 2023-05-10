@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="676.0" prefWidth="921.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.edu.project.user.AdoptionController">
+   <children>
+      <ImageView fitHeight="676.0" fitWidth="921.0" layoutX="-4.0" nodeOrientation="RIGHT_TO_LEFT" pickOnBounds="true">
+         <image>
+            <Image url="file:/C:/Users/Sarra%20Kachouandi/Desktop/javapjoto/17973908.jpg" />
+         </image>
+      </ImageView>
+      <Label layoutX="38.0" layoutY="402.0" text="Age:">
+         <font>
+            <Font name="Serif Bold Italic" size="17.0" />
+         </font></Label>
+      <Label layoutX="35.0" layoutY="297.0" text="Description:">
+         <font>
+            <Font name="Serif Bold Italic" size="17.0" />
+         </font></Label>
+      <Label layoutX="38.0" layoutY="452.0" text="Race:">
+         <font>
+            <Font name="Serif Bold Italic" size="17.0" />
+         </font></Label>
+      <Label layoutX="33.0" layoutY="198.0" text="Proprietaire:">
+         <font>
+            <Font name="Serif Bold Italic" size="17.0" />
+         </font></Label>
+      <Label layoutX="39.0" layoutY="150.0" text="Nom:">
+         <font>
+            <Font name="Serif Bold Italic" size="17.0" />
+         </font></Label>
+      <Label layoutX="36.0" layoutY="492.0" text="Sexe:">
+         <font>
+            <Font name="Serif Bold Italic" size="17.0" />
+         </font></Label>
+      <Label layoutX="35.0" layoutY="532.0" text="Categorie:">
+         <font>
+            <Font name="Serif Bold Italic" size="17.0" />
+         </font></Label>
+      <TextField fx:id="tfNom" layoutX="131.0" layoutY="144.0" prefHeight="31.0" prefWidth="256.0" />
+      <TextField fx:id="tfProprietaire" layoutX="131.0" layoutY="192.0" prefHeight="31.0" prefWidth="256.0" />
+      <TextField fx:id="tfDescription" layoutX="131.0" layoutY="234.0" prefHeight="146.0" prefWidth="256.0" />
+      <TextField fx:id="tfAge" layoutX="131.0" layoutY="397.0" prefHeight="31.0" prefWidth="256.0" />
+      <TextField fx:id="tfRace" layoutX="131.0" layoutY="447.0" prefHeight="31.0" prefWidth="256.0" />
+      <TextField fx:id="tfSexe" layoutX="131.0" layoutY="487.0" prefHeight="31.0" prefWidth="256.0" />
+      <TextField fx:id="tfCategorie" layoutX="131.0" layoutY="527.0" prefHeight="31.0" prefWidth="256.0" />
+      <Button fx:id="btn" layoutX="164.0" layoutY="572.0" mnemonicParsing="false" onAction="#SaveAdoption" style="-fx-background-color: #3571C4;" text="Ajouter Adoption" textFill="#fcfcfc" />
+      <Button fx:id="switchButton" layoutX="323.0" layoutY="572.0" mnemonicParsing="false" onAction="#handleSwitch" prefHeight="31.0" prefWidth="135.0" style="-fx-background-color: #169013#169013 #169013#169013;" text="Show Adoptions" textFill="WHITE" />
+      <ImageView fitHeight="50.0" fitWidth="48.0" layoutX="14.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../../../../../../Desktop/javapjoto/logo.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="68.0" layoutY="21.0" text="Animaland">
+         <font>
+            <Font name="Serif Bold" size="20.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

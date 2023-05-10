@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="servicespi.gui.MainGui">
+   <center>
+      <TabPane prefHeight="630.0" prefWidth="704.0" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
+        <tabs>
+          <Tab text="Category">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <BorderPane layoutX="176.0" layoutY="65.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <center>
+                              <TableView fx:id="categoryTableView" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                                <columns>
+                                  <TableColumn fx:id="idColumn" maxWidth="50.0" minWidth="50.0" prefWidth="50.0" resizable="false" text="ID" />
+                                  <TableColumn fx:id="typeColumn" maxWidth="1.7976931348623157E308" minWidth="-1.0" prefWidth="300.0" resizable="false" text="TYPE" />
+                                </columns>
+                              </TableView>
+                           </center>
+                           <top>
+                              <GridPane hgap="10.0" BorderPane.alignment="CENTER">
+                                <columnConstraints>
+                                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                </columnConstraints>
+                                <rowConstraints>
+                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                </rowConstraints>
+                                 <children>
+                                    <Button fx:id="addButton" defaultButton="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#openAddCategory" text="Add Category" />
+                                    <Button fx:id="deleteButton" cancelButton="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#deleteCategoryFromTable" style="-fx-background-color: ee0000;" text="Delete" textFill="WHITE" GridPane.columnIndex="2" />
+                                    <Button fx:id="btnRefrech" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#refetch" text="Refresh()" GridPane.columnIndex="3" />
+                                    <Button fx:id="showButton" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#showCategoryWhenSelected" style="-fx-background-color: CFD4C5;" text="Show" GridPane.columnIndex="1" />
+                                 </children>
+                                 <padding>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                 </padding>
+                              </GridPane>
+                           </top>
+                           <right>
+                              <GridPane BorderPane.alignment="CENTER">
+                                <columnConstraints>
+                                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                </columnConstraints>
+                                <rowConstraints>
+                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                </rowConstraints>
+                                 <children>
+                                    <Button fx:id="editCategory" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#updateCategoryThatIsChanged" text="Update" GridPane.rowIndex="2" />
+                                    <TextField fx:id="editTextField" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" GridPane.rowIndex="1" />
+                                    <Label text="Category" />
+                                 </children>
+                                 <padding>
+                                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                 </padding>
+                              </GridPane>
+                           </right>
+                        </BorderPane>
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+          <Tab text="Service">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <BorderPane layoutX="110.0" layoutY="44.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="506.0" prefWidth="600.0" AnchorPane.bottomAnchor="55.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <center>
+                              <TableView fx:id="servicesTableView" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                                <columns>
+                                  <TableColumn fx:id="ids" prefWidth="32.0" text="ID" />
+                                  <TableColumn fx:id="nom" prefWidth="76.0" text="NOM" />
+                                    <TableColumn fx:id="prix" prefWidth="69.0" text="PRIX" />
+                                    <TableColumn fx:id="date" prefWidth="76.0" text="DATE" />
+                                    <TableColumn fx:id="desc" prefWidth="119.0" text="DESCRIPTION" />
+                                    <TableColumn fx:id="category" prefWidth="85.0" text="CATEGORY" />
+                                    <TableColumn fx:id="views" prefWidth="77.0" text="VIEWS" />
+                                    <TableColumn fx:id="likes" prefWidth="65.0" text="LIKES" />
+                                </columns>
+                              </TableView>
+                           </center>
+                           <top>
+                              <GridPane hgap="10.0" BorderPane.alignment="CENTER">
+                                <columnConstraints>
+                                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                </columnConstraints>
+                                <rowConstraints>
+                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                </rowConstraints>
+                                 <children>
+                                    <Button fx:id="addService" defaultButton="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#openServiceWindow" text="Add Service" />
+                                    <Button fx:id="deleteService" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#deleteServiceFromTable" style="-fx-background-color: ee0000;" text="Delete" textFill="WHITE" GridPane.columnIndex="2" />
+                                    <Button fx:id="btnRefrech" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#refetch" text="refresh()" GridPane.columnIndex="3" />
+                                    <Button fx:id="show" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#showServiceWhenSelected" style="-fx-background-color: CFD4C5;" text="Show" GridPane.columnIndex="1" />
+                                 </children>
+                                 <padding>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                 </padding>
+                              </GridPane>
+                           </top>
+                           <bottom>
+                              <GridPane hgap="10.0" vgap="5.0" BorderPane.alignment="CENTER">
+                                <columnConstraints>
+                                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                </columnConstraints>
+                                <rowConstraints>
+                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                </rowConstraints>
+                                 <children>
+                                    <TextField fx:id="nomEdit" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#showServiceWhenSelected" promptText="nom..." />
+                                    <TextField fx:id="prixEdit" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" promptText="prix..." GridPane.columnIndex="1" />
+                                    <TextField fx:id="dateEdit" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" promptText="date..." GridPane.rowIndex="1" />
+                                    <TextField fx:id="descEdit" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" promptText="description" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                    <Button fx:id="updateList" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#updateServiceThatIsChanged" text="Update" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                    <TextField fx:id="categoryEdit" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" promptText="category id" GridPane.rowIndex="2" />
+                                    <Button fx:id="pdf" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#exportPdf" text="PDF" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                                 </children>
+                                 <padding>
+                                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                 </padding>
+                              </GridPane>
+                           </bottom>
+                        </BorderPane>
+                        <Button fx:id="search" layoutX="222.0" layoutY="516.0" maxHeight="1.7976931348623157E308" mnemonicParsing="false" onAction="#doSearch" text="Search" />
+                        <TextField fx:id="searchInput" layoutX="27.0" layoutY="516.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" promptText="search" />
+                        <Button fx:id="rating" defaultButton="true" layoutX="515.0" layoutY="506.0" mnemonicParsing="false" onAction="#onRating" text="Rating" />
+                        <Button fx:id="dislike" layoutX="423.0" layoutY="516.0" mnemonicParsing="false" onAction="#onDislike" text="Dislike" textFill="#dd2424" />
+                        <Button fx:id="like1" layoutX="377.0" layoutY="516.0" mnemonicParsing="false" onAction="#onLike" text="Like" textFill="#372ee1" />
+                     </children></AnchorPane>
+            </content>
+          </Tab>
+        </tabs>
+      </TabPane>
+   </center>
+</BorderPane>
